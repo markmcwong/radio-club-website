@@ -20,7 +20,7 @@ const theme = {
 const CarouselNews = props => {
   const [percent, setPercent] = useState(0);
   useEffect(() => {
-    setPercent((percent + 0.08) % 100);
+    setPercent((percent + 0.15) % 100);
   }, [percent]);
   return (
     <ThemeProvider theme={theme}>
