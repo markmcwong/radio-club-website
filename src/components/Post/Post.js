@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "prismjs/themes/prism-okaidia.css";
-
+import Img from "gatsby-image";
+import {Container, Row, Col} from "atomize";
 import asyncComponent from "../AsyncComponent";
 import Headline from "../Article/Headline";
 import Bodytext from "../Article/Bodytext";
@@ -15,7 +16,8 @@ const Share = asyncComponent(() =>
     .then(module => {
       return module.default;
     })
-    .catch(error => {})
+    .catch(error => {
+    })
 );
 
 const Post = props => {
@@ -24,7 +26,14 @@ const Post = props => {
     post: {
       html,
       fields: { prefix, slug },
-      frontmatter: { title, author, category }
+      frontmatter: {
+        title,
+        category,
+        author,
+        cover: {
+          children: [{ fluid }]
+        }
+      }
     },
     authornote,
     facebook,
@@ -36,15 +45,26 @@ const Post = props => {
   return (
     <React.Fragment>
       <header>
-        <Headline title={title} theme={theme} />
-        <Meta prefix={prefix} author={author} category={category} theme={theme} />
+        <Container>
+          <Row>
+            <Col size="8">
+              <Headline title={title} theme={theme}/>
+              <Meta prefix={prefix} author={author} category={category} theme={theme}/>
+            </Col>
+            <Col size="4">
+              <div style={{ "height": "200px" }}>
+                <Img style={{ "height": "200px" }} fluid={fluid} />
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </header>
-      <Bodytext html={html} theme={theme} />
+      <Bodytext html={html} theme={theme}/>
       <footer>
-        <Share post={post} theme={theme} />
-        <Author note={authornote} theme={theme} />
-        <NextPrev next={nextPost} prev={prevPost} theme={theme} />
-        <Comments slug={slug} facebook={facebook} theme={theme} />
+        <Share post={post} theme={theme}/>
+        <Author note={authornote} theme={theme}/>
+        <NextPrev next={nextPost} prev={prevPost} theme={theme}/>
+        <Comments slug={slug} facebook={facebook} theme={theme}/>
       </footer>
     </React.Fragment>
   );

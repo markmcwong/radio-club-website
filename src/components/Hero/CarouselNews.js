@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Div, ThemeProvider, Text, Button, Icon } from "atomize";
 import { useStyletron } from "styletron-react";
 import { Line, Circle } from "rc-progress";
+import { graphql } from "gatsby";
+import PropTypes from "prop-types";
+import { useSpring, animated } from "react-spring";
 
 const theme = {
   colors: {
@@ -18,60 +21,108 @@ const theme = {
 };
 
 const CarouselNews = props => {
+  const { sites } = props;
+  const [state, toggle] = useState(true);
+  const animation = useSpring({ from: { opacity: 0 }, opacity: state ? 1 : 0, config: { duration: 500 } });
   const [percent, setPercent] = useState(0);
   useEffect(() => {
-    setPercent((percent + 0.15) % 100);
+    setPercent(percent + 0.2);
+    if (percent >= 100) {
+      setPercent(percent % 100);
+      console.log("react 100");
+      toggle(!state);
+    }
   }, [percent]);
   return (
-    <ThemeProvider theme={theme}>
-      <React.Fragment>
-        <Div pos="absolute"
-             bottom="0"
-             right="0">
-          <Line strokeLinecap="square" percent={percent} strokeWidth="2" strokeColor="#fff" trailWidth="0"/>
-          <Div
-            className="carouselNews"
-            p={{ y: { lg: "3rem", xl: "4rem" }, x: { lg: "6rem", xl: "8rem" } }}
-            bg="warning700"
-          >
-            <Text tag="h2" textSize="display1" p={{ b: { lg: "1rem", xl: "2rem" } }}>
-              OCamp Details&nbsp; <strong></strong>
-            </Text>
-            <Text tag="p" w={{ lg: "35vw", xl: "35vw" }} p={{ b: { lg: "1rem", xl: "1rem" } }}>orem ipsum dolor sit
-              amet,
-              consectetur adipiscing elit.
-              Etiam velit urna, dictum sed lacus in, elementum hendrerit erat.
-              Etiam sollicitudin mauris quis massa bibendum pellentesque.</Text>
-            <a href="#">Learn more! <Icon name="LongRight" size="20px"/></a>
-          </Div>
+    <React.Fragment>
+      <Div pos="absolute" bottom="0" right="0">
+        {/*https://github.com/react-component/progress*/}
+        <Line
+          strokeLinecap="square"
+          percent={percent}
+          strokeWidth="2"
+          strokeColor="#fff"
+          trailWidth="0"
+        />
+        <Div
+          className="carouselNews"
+          p={{ t: { lg: "2rem", xl: "2rem" }, x: { lg: "6rem", xl: "8rem" } }}
+          bg="info300"
+        >
+
+          {sites.map(site => {
+            const {
+              node,
+              node: {
+                frontmatter: {
+                  title,
+                  description,
+                  action
+                }
+              }
+            } = site;
+            return <div>
+              <Text p={{ b: { lg: "1rem", xl: "1rem" } }} textSize="heading" tag="h1">{title}</Text>
+              <Text tag="p" w={{ lg: "35vw", xl: "35vw" }} p={{ b: { lg: "1rem", xl: "1rem" } }}>
+                {description}
+              </Text>
+              <Div p={{ t: { lg: "1rem", xl: "1rem" }, b: { lg: "2em", xl: "2rem" }  }}>
+                <Text tag="a" textSize="title" onClick={() => location.href = "#"}>
+                  {action}
+                </Text>
+              </Div>
+            </div>;
+          })}
+          <animated.div style={animation}>
+
+          </animated.div>
         </Div>
-        {/* --- STYLES --- */}
-        <style jsx>{`
-          .carouselNews {
-            background-color: white;
-          }
+      </Div>
+      {/* --- STYLES --- */}
+      <style jsx>{`
+        h1 {
+          font-size: 64px !important;
+        }
 
-          @keyframes buttonIconMove {
-            0% {
-              transform: translateY(0);
-            }
-            50% {
-              transform: translateY(-10px);
-            }
-            100% {
-              transform: translateY(0);
-            }
-          }
+        .carouselNews {
+          background-color: white;
+        }
 
-          @from-width tablet {
+        @keyframes buttonIconMove {
+          0% {
+            transform: translateY(0);
           }
+          50% {
+            transform: translateY(-10px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
 
-          @from-width desktop {
-          }
-        `}</style>
-      </React.Fragment>
-    </ThemeProvider>
+        @from-width tablet {
+        }
+
+        @from-width desktop {
+        }
+      `}</style>
+    </React.Fragment>
   );
+};
+CarouselNews.propTypes = {
+  data: PropTypes.object.isRequired
 };
 
 export default CarouselNews;
+
+export const query = graphql`
+  query CarouselQuery {
+    site {
+      siteMetadata {
+        facebook {
+          appId
+        }
+      }
+    }
+  }
+`;

@@ -88,6 +88,7 @@ class Layout extends React.Component {
             ) {
               edges {
                 node {
+                  excerpt
                   fields {
                     slug
                     prefix

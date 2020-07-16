@@ -64,9 +64,11 @@ export const postQuery = graphql`
         author
         category
         cover {
-          childImageSharp {
-            resize(width: 300) {
-              src
+          children {
+            ... on ImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid_withWebp
+              }
             }
           }
         }

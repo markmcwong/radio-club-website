@@ -1,23 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CarouselNews from "./CarouselNews";
 import { FaArrowDown } from "react-icons/fa/";
 import { Div, Text } from "atomize";
+import { useTransition, animated } from "react-spring";
+import { Transition } from "react-spring/renderprops";
 
 const Hero = props => {
-  const { scrollToContent, backgrounds, theme } = props;
-
+  const [show, setShow] = useState(true);
+  const { scrollToContent, backgrounds, theme, site } = props;
+  const [toggle, set] = useState(false);
+  const transitions = useTransition(toggle, null, {
+    from: { position: "absolute", opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 }
+  });
   return (
     <React.Fragment>
       <section className="hero">
-        <Text tag="h1" textSize="12rem" textWeight="500" pos="absolute" top="25vh" left="8%"
-              style={{ "line-height": "14rem" }} textColor="black">
-          最warm <br/>組爸媽 &nbsp;
-        </Text>
-        <CarouselNews/>
-        <button onClick={scrollToContent} aria-label="scroll">
-          <FaArrowDown/>
-        </button>
+        <Transition
+          native
+          items={show}
+          from={{ opacity: 0 }}
+          enter={{ opacity: 1 }}
+          leave={{ opacity: 0 }}
+        >
+          {show =>
+            show &&
+            (props => (
+              <animated.div style={props}>
+                <Text
+                  tag="h1"
+                  textSize="7vw"
+                  textWeight="500"
+                  pos="absolute"
+                  top="25vh"
+                  left="8%"
+                  style={{ "line-height": "8rem" }}
+                  textColor="white"
+                >
+                  Bunch of <br /> Morons &nbsp;
+                </Text>
+                ️
+              </animated.div>
+            ))
+          }
+        </Transition>
+        <CarouselNews sites={site} />
+        {/*<button onClick={scrollToContent} aria-label="scroll">
+          <FaArrowDown />
+        </button>*/}
       </section>
 
       {/* --- STYLES --- */}
