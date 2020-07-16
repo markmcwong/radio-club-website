@@ -3,6 +3,8 @@ import FontFaceObserver from "fontfaceobserver";
 import PropTypes from "prop-types";
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
+import { StyleReset } from 'atomize';
+import { useStyletron } from "styletron-react";
 
 import { getScreenWidth, timeoutThrottlerHandler } from "../utils/helpers";
 import Footer from "../components/Footer/";
@@ -111,7 +113,9 @@ class Layout extends React.Component {
           } = data;
 
           return (
-            <ThemeContext.Provider value={this.state.theme}>
+            <>
+              <StyleReset />
+              <ThemeContext.Provider value={this.state.theme}>
               <FontLoadedContext.Provider value={this.state.font400loaded}>
                 <ScreenWidthContext.Provider value={this.state.screenWidth}>
                   <React.Fragment>
@@ -175,6 +179,7 @@ class Layout extends React.Component {
                 </ScreenWidthContext.Provider>
               </FontLoadedContext.Provider>
             </ThemeContext.Provider>
+            </>
           );
         }}
       />

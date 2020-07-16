@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import CarouselNews from "./CarouselNews";
 import { FaArrowDown } from "react-icons/fa/";
+import { Div, Text } from "atomize";
 
 const Hero = props => {
   const { scrollToContent, backgrounds, theme } = props;
@@ -9,11 +10,13 @@ const Hero = props => {
   return (
     <React.Fragment>
       <section className="hero">
-        <h1>
-          This is a demo site of&nbsp;the <strong>heroBlog</strong> GatsbyJS starter
-        </h1>
+        <Text tag="h1" textSize="12rem" textWeight="500" pos="absolute" top="25vh" left="8%"
+              style={{ "line-height": "14rem" }} textColor="black">
+          最warm <br/>組爸媽 &nbsp;
+        </Text>
+        <CarouselNews/>
         <button onClick={scrollToContent} aria-label="scroll">
-          <FaArrowDown />
+          <FaArrowDown/>
         </button>
       </section>
 
