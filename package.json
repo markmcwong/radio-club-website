@@ -7,6 +7,7 @@
     "antd": "^3.7.0",
     "atomize": "^1.0.26",
     "fontfaceobserver": "^2.0.13",
+    "framer-motion": "^2.0.1",
     "gatsby": "^2.1",
     "gatsby-image": "^2.0.5",
     "gatsby-plugin-algolia": "^0.1.0",
@@ -24,6 +25,7 @@
     "gatsby-plugin-styled-jsx": "^3.0.1",
     "gatsby-plugin-styled-jsx-postcss": "^2.0.2",
     "gatsby-plugin-styletron": "^5.0.9",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-remark-emojis": "^0.2.3",
     "gatsby-remark-external-links": "^0.0.4",
@@ -49,7 +51,6 @@
     "react-md-spinner": "^0.3.0",
     "react-obfuscate": "^2.1.4",
     "react-share": "^2.2.0",
-    "react-spring": "^8.0.27",
     "react-transition-group": "^4.4.1",
     "react-vertical-timeline-component": "^3.0.2",
     "react-visibility-sensor": "^4.1.0",
@@ -60,6 +61,7 @@
     "styletron-react": "^5.2.7",
     "tinycolor2": "^1.4.1",
     "typeface-open-sans": "^0.0.54",
+    "typography": "^0.16.19",
     "yaml-loader": "^0.5.0"
   },
   "keywords": [

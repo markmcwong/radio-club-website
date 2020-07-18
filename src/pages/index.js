@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { ThemeContext } from "../layouts";
 import Blog from "../components/Blog";
@@ -8,13 +8,17 @@ import Seo from "../components/Seo";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Item from "../components/Blog/Item";
-import { Div, Text, Container } from "atomize";
+import { Div, Text, Container, Col, Row } from "atomize";
+import Test from "../components/Page/animatedImage";
 
 class IndexPage extends React.Component {
   separator = React.createRef();
-
   scrollToContent = e => {
     this.separator.current.scrollIntoView({ block: "start", behavior: "smooth" });
+  };
+
+  state = {
+    show: true
   };
 
   render() {
@@ -26,6 +30,9 @@ class IndexPage extends React.Component {
         },
         bgTablet: {
           resize: { src: tablet }
+        },
+        bg: {
+          resize: { src: bgPhoto }
         },
         bgMobile: {
           resize: { src: mobile }
@@ -43,59 +50,86 @@ class IndexPage extends React.Component {
       tablet,
       mobile
     };
-
+    const img = (
+      <Div>
+        <img width="75%" src={bgPhoto} />
+      </Div>
+    );
     return (
       <React.Fragment>
         <ThemeContext.Consumer>
           {theme => (
-            <Hero scrollToContent={this.scrollToContent} backgrounds={backgrounds} theme={theme} site={carouselSlide}/>
+            <Hero
+              scrollToContent={this.scrollToContent}
+              backgrounds={backgrounds}
+              theme={theme}
+              site={carouselSlide}
+            />
           )}
         </ThemeContext.Consumer>
-        <Div bg="gray300" p={{ y: { lg: "5rem", xl: "7rem" } }}>
-          <Container d="flex" align="center" flexDir="column">
-            <Text p={{ b: { lg: "2rem", xl: "3rem" } }} textSize="display3" tag="h1">Latest News</Text>
+        <Div bg="gray300" p={{ y: { lg: "5rem", xl: "7rem" }, x: { lg: "3rem", xl: "3rem" } }}>
+          {/*<Container d="flex" align="flex-start" flexDir="column">*/}
+          <Text
+            p={{ l: { xl: "4rem" }, b: { lg: "2rem", xl: "3rem" } }}
+            textSize="display3"
+            tag="h1"
+          >
+            Latest News
+          </Text>
+          <Row>
+            <Col size="7">
+              <Container d="flex" align="centre" flexDir="column">
+                <VerticalTimeline>
+                  {timetrees.map(timetree => {
+                    // tests.map(test => {});
+                    const {
+                      node,
+                      node: { link, title, description, date, colour, label, timeline }
+                    } = timetree;
 
-          <VerticalTimeline>
-            {timetrees.map(timetree => {
-              const {
-                node,
-                node: {
-                  link,
-                  title,
-                  description,
-                  date,
-                  colour,
-                  label
-                }
-              } = timetree;
-              return <VerticalTimelineElement
-                className="vertical-timeline-element--work"
-                contentStyle={{ background: "#fff", color: "#000" }}
-                date={date}
-                iconStyle={{ background: colour, color: "#fff" }}
-                >
-                {/*contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}*/}
+                    return (
+                      <VerticalTimelineElement
+                        className="vertical-timeline-element--work"
+                        contentStyle={{ background: "#fff", color: "#000" }}
+                        date={date}
+                        iconStyle={{ background: colour, color: "#fff" }}
+                      >
+                        {/*contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}*/}
 
-                <h3 className="vertical-timeline-element-title">{title}</h3>
-                <h4 className="vertical-timeline-element-subtitle"></h4>
-                <p>
-                  {description}
-                </p>
-                <a href={link}>{label}</a>
-              </VerticalTimelineElement>;
-            })}
-          </VerticalTimeline>
-          <Text p={{ t: { lg: "2rem", xl: "3rem" } }} textSize="heading" tag="h4">View more</Text>
-          </Container>
+                        <h3 className="vertical-timeline-element-title">{title}</h3>
+                        <h4 className="vertical-timeline-element-subtitle"></h4>
+                        <p>{description}</p>
+                        <a href={link}>{label}</a>
+                      </VerticalTimelineElement>
+                    );
+                  })}
+                </VerticalTimeline>
+              </Container>
+            </Col>
+            <Col size="5">
+              <Test children={img} />
+            </Col>
+          </Row>
+          <div style={{ margin: "auto" }}>
+            <Text
+              textAlign="center"
+              p={{ t: { lg: "2rem", xl: "3rem" } }}
+              textSize="heading"
+              tag="p"
+            >
+              View more
+            </Text>
+          </div>
+          {/*}</Container>*/}
         </Div>
 
-        <hr ref={this.separator}/>
+        <hr ref={this.separator} />
 
         <ThemeContext.Consumer>
-          {theme => <Blog posts={posts} theme={theme}/>}
+          {theme => <Blog posts={posts} theme={theme} />}
         </ThemeContext.Consumer>
 
-        <Seo facebook={facebook}/>
+        <Seo facebook={facebook} />
 
         <style jsx>{`
           hr {
@@ -117,7 +151,7 @@ export default IndexPage;
 //eslint-disable-next-line no-undef
 export const query = graphql`
   query IndexQuery {
-    allTimetreeJson{
+    allTimetreeJson {
       edges {
         node {
           link
@@ -126,9 +160,10 @@ export const query = graphql`
           date
           colour
           label
+          timeline
         }
       }
-    },
+    }
     posts: allMarkdownRemark(
       filter: { fileAbsolutePath: { regex: "//posts/[0-9]+.*--/" } }
       sort: { fields: [fields___prefix], order: DESC }
@@ -182,17 +217,22 @@ export const query = graphql`
         }
       }
     }
-    bgDesktop: imageSharp(fluid: { originalName: { regex: "/office/" } }) {
+    bg: imageSharp(fluid: { originalName: { regex: "/20gb/" } }) {
       resize(width: 1200, quality: 100, cropFocus: CENTER) {
         src
       }
     }
-    bgTablet: imageSharp(fluid: { originalName: { regex: "/office/" } }) {
+    bgDesktop: imageSharp(fluid: { originalName: { regex: "/home-background/" } }) {
+      resize(width: 1200, quality: 100, cropFocus: CENTER) {
+        src
+      }
+    }
+    bgTablet: imageSharp(fluid: { originalName: { regex: "/home-background/" } }) {
       resize(width: 800, height: 1100, quality: 100, cropFocus: CENTER) {
         src
       }
     }
-    bgMobile: imageSharp(fluid: { originalName: { regex: "/office/" } }) {
+    bgMobile: imageSharp(fluid: { originalName: { regex: "/home-background/" } }) {
       resize(width: 450, height: 850, quality: 100, cropFocus: CENTER) {
         src
       }

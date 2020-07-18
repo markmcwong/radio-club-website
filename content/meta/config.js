@@ -1,8 +1,8 @@
 module.exports = {
-  siteTitle: "HeroBlog - a GatsbyJS starter", // <title>
-  shortSiteTitle: "HeroBlog - GatsbyJS starter", // <title> ending for posts and pages
-  siteDescription: "HeroBlog is a GatsbyJS starter.",
-  siteUrl: "https://gatsby-starter-hero-blog.greglobinski.com",
+  siteTitle: "科大校園人民廣播電台 People's Campus Radio, HKUSTSU", // <title>
+  shortSiteTitle: "科大電台", // <title> ending for posts and pages
+  siteDescription: "科大校園人民廣播電台 People's Campus Radio, HKUSTSU",
+  siteUrl: "https://radio.su.ust.hk/",
   // pathPrefix: "",
   siteImage: "preview.jpg",
   siteLanguage: "en",

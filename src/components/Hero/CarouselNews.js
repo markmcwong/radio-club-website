@@ -4,7 +4,6 @@ import { useStyletron } from "styletron-react";
 import { Line, Circle } from "rc-progress";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
-import { useSpring, animated } from "react-spring";
 
 const theme = {
   colors: {
@@ -22,17 +21,15 @@ const theme = {
 
 const CarouselNews = props => {
   const { sites } = props;
-  const [state, toggle] = useState(true);
-  const animation = useSpring({ from: { opacity: 0 }, opacity: state ? 1 : 0, config: { duration: 500 } });
   const [percent, setPercent] = useState(0);
-  useEffect(() => {
-    setPercent(percent + 0.2);
-    if (percent >= 100) {
-      setPercent(percent % 100);
-      console.log("react 100");
-      toggle(!state);
-    }
-  }, [percent]);
+  // useEffect(() => {
+  //   setPercent(percent + 0.025);
+  //   if (percent >= 100) {
+  //     setPercent(percent % 100);
+  //     console.log("react 100");
+  //     toggle(!state);
+  //   }
+  // }, [percent]);
   return (
     <React.Fragment>
       <Div pos="absolute" bottom="0" right="0">
@@ -73,9 +70,6 @@ const CarouselNews = props => {
               </Div>
             </div>;
           })}
-          <animated.div style={animation}>
-
-          </animated.div>
         </Div>
       </Div>
       {/* --- STYLES --- */}
@@ -109,9 +103,8 @@ const CarouselNews = props => {
     </React.Fragment>
   );
 };
-CarouselNews.propTypes = {
-  data: PropTypes.object.isRequired
-};
+{/*CarouselNews.propTypes = {
+};*/}
 
 export default CarouselNews;
 

@@ -129,6 +129,14 @@ module.exports = {
     },
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['Heebo', 'Ruda', 'Exo']
+        }
+      }
+    },
     `gatsby-transformer-json`, // as above
     {
       resolve: "gatsby-source-filesystem",
