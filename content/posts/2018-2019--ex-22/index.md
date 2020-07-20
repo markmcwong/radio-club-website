@@ -7,7 +7,7 @@ author: greg lobinski
 ![unsplash.com](./ex-22.jpeg)
 
 We are Rambled, the 22nd Elected Cabinet of People’s Campus Radio, HKUSTSU, Session 2018-2019. As a variation of the verb ramble, our name represents a slow-paced, enjoyable lifestyle which also suggested our belief: bringing comfortable and entertaining activities and programs for members as well as all HKUST members.
-### The 23rd Cabinet of People's Campus Radio, HKUSTSU (2019-2020)
+### The 22nd Cabinet of People's Campus Radio, HKUSTSU (2019-2020)
 
 - President - CHEUNG Pak Jim (Jim)
 - Internal Vice President - LO Wai Shan (Shirley)

@@ -9,7 +9,11 @@ const Test = props => {
   const variants = {
     visible: { scale: [1, 1, 1, 1, 1], opacity: [0, 0, 0, 0.75, 1]},
     initial: { scale: 0.7 },
-    scaling: { scale: [0.7, 0.7, 1, 1, 1], x: [0, 0, 0, 0, 150], transformOrigin: "top left" }
+    scaling: { scale: [0.7, 0.7, 1, 1, 1], x: [0, 0, 0, 0, 75], transformOrigin: "top right" },
+    whileHover: {
+      x: 20, y: 20,
+      transition: { duration: 0.25 }
+    }
   };
 
   const {
@@ -27,9 +31,10 @@ const Test = props => {
       {({ isVisible }) => {
         return (
           <motion.div animate={isVisible? "scaling" : "initial"}
-                      transition={{ duration: 2, times: [0, 0.4, 0.6, 0.8, 1] }}
-                      variants={variants} style={{backgroundColor: "brown", width: "90%"}}>
+                      transition={{ duration: 2, times: [0, 0.4, 0.6, 0.8, 0.9] }}
+                      variants={variants} style={{backgroundColor: "brown", width: "80%", margin: "20px"}}>
             <motion.div animate={isVisible? "visible" : "initial"}
+                        whileHover="whileHover"
                         transition={{  duration: 1.5, times: [0, 0.4, 0.6, 0.75, 1] }}
                         variants={variants} style={{width: "100%"}}>
               {children}

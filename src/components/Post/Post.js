@@ -29,7 +29,6 @@ const Post = props => {
       frontmatter: {
         title,
         category,
-        author,
         cover: {
           children: [{ fluid }]
         }
@@ -49,11 +48,11 @@ const Post = props => {
           <Row>
             <Col size="8">
               <Headline title={title} theme={theme}/>
-              <Meta prefix={prefix} author={author} category={category} theme={theme}/>
+              <Meta prefix={prefix} category={category} theme={theme}/>
             </Col>
             <Col size="4">
-              <div style={{ "height": "200px" }}>
-                <Img style={{ "height": "200px" }} fluid={fluid} />
+              <div style={{ "height": "auto" }}>
+                <Img style={{ "height": "auto" }} fluid={fluid} />
               </div>
             </Col>
           </Row>

@@ -71,6 +71,9 @@ class IndexPage extends React.Component {
             p={{ l: { xl: "4rem" }, b: { lg: "2rem", xl: "3rem" } }}
             textSize="display3"
             tag="h1"
+            data-sal="slide-right"
+            data-sal-delay="200"
+            data-sal-easing="ease"
           >
             Latest News
           </Text>
@@ -179,7 +182,6 @@ export const query = graphql`
           frontmatter {
             title
             category
-            author
             cover {
               children {
                 ... on ImageSharp {
