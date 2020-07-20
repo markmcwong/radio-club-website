@@ -128,6 +128,7 @@ module.exports = {
       }
     },
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-scroll-reveal`,
     `gatsby-transformer-sharp`,
     {
       resolve: 'gatsby-plugin-web-font-loader',

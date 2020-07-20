@@ -8,7 +8,7 @@ import Seo from "../components/Seo";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Item from "../components/Blog/Item";
-import { Div, Text, Container, Col, Row } from "atomize";
+import { Div, Text, Container, Col, Row, Image } from "atomize";
 import Test from "../components/Page/animatedImage";
 
 class IndexPage extends React.Component {
@@ -51,9 +51,7 @@ class IndexPage extends React.Component {
       mobile
     };
     const img = (
-      <Div>
-        <img width="75%" src={bgPhoto} />
-      </Div>
+        <Image src={bgPhoto} />
     );
     return (
       <React.Fragment>
@@ -116,6 +114,9 @@ class IndexPage extends React.Component {
               p={{ t: { lg: "2rem", xl: "3rem" } }}
               textSize="heading"
               tag="p"
+              data-sal="slide-up"
+              data-sal-delay="300"
+              data-sal-easing="ease"
             >
               View more
             </Text>
