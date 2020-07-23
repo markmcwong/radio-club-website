@@ -4,6 +4,10 @@ import { useStyletron } from "styletron-react";
 import { Line, Circle } from "rc-progress";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
+import { motion, useAnimation } from "framer-motion";
+import one from "../../images/png/1.png";
+import two from "../../images/png/2.png";
+import three from "../../images/png/3.png";
 
 const theme = {
   colors: {
@@ -21,32 +25,116 @@ const theme = {
 
 const CarouselNews = props => {
   const { sites } = props;
+  const variants = {
+    enter: (direction) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0
+      };
+    },
+    center: {
+      zIndex: 0,
+      x: 0,
+      opacity: 1,
+      height: "100vh",
+      width: "100vw"
+    },
+    exit: (direction) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0
+      };
+    }
+  };
+  const images = [
+    one,
+    two,
+    three
+  ];
+  const text = [
+    <>Hello, We're<br/> Radio <br/></>,
+    <>General Broadcast <br/> Caption <br/></>,
+    <>Some Suitable <br/> Caption <br/></>,
+  ];
+  const sequence = async () => {
+    await controls.start({
+      x: ["0%", "-15%"],
+      opacity: [1, 0],
+      transition: { duration: 0.6, times: [0, 1] }
+    });
+    setimageIndex((imageIndex + 1) % 3);
+    settextIndex((textIndex + 1) % 3);
+    controls.start({
+      x: ["-10%", "0%"],
+      opacity: [0, 1],
+      transition: { duration: 0.4, times: [0, 1] }
+    });
+  };
+  const [imageIndex, setimageIndex] = useState(0);
+  const [textIndex, settextIndex] = useState(0);
   const [percent, setPercent] = useState(0);
-  // useEffect(() => {
-  //   setPercent(percent + 0.025);
-  //   if (percent >= 100) {
-  //     setPercent(percent % 100);
-  //     console.log("react 100");
-  //     toggle(!state);
-  //   }
-  // }, [percent]);
+  useEffect(() => {
+    if (percent > 100) {
+      sequence();
+      lineControls.start({
+        y: ["0%", "100%", "0%" ,"0%"],
+        opacity: [1, 0, 0, 1],
+        transition: { duration: 1.025, times: [0, 0.5, 1, 1] }
+      });
+      textControls.start({
+        opacity: [1, 0, 0, 1],
+        transition: { duration: 1.025, times: [0, 0.5, 0.8, 1] }
+      });
+      let timer1 = setTimeout(() => setPercent(0), 1000)
+      return () => {
+        clearTimeout(timer1)
+      }
+    }
+    setPercent(percent + 0.05)
+  },[percent])
+  const controls = useAnimation();
+  const lineControls = useAnimation();
+  const textControls = useAnimation();
   return (
     <React.Fragment>
-      <Div pos="absolute" bottom="0" right="0">
+      <motion.img
+        src={images[imageIndex]}
+        variants={variants}
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 200 },
+          opacity: { duration: 0.2 }
+        }}
+        style={{ height: "100vh",
+          width: "100vw", backgroundSize: "cover", objectFit: "cover", filter: "blur(4px)"}}
+      />
+      <Div pos="absolute" left="10vw" top="15vh">
+        <motion.div animate={controls}>
+          <Text textColor="white" tag="h1" textSize="7vw" p={{ t: "10px" }}>
+            {text[textIndex]}
+          </Text>
+        </motion.div>
+      </Div>
+      <Div w="60vw" pos="absolute" bottom="0" right="0">
         {/*https://github.com/react-component/progress*/}
-        <Line
-          strokeLinecap="square"
-          percent={percent}
-          strokeWidth="2"
-          strokeColor="#fff"
-          trailWidth="0"
-        />
+        <motion.div animate={lineControls}>
+          <Line
+            strokeLinecap="square"
+            percent={percent}
+            strokeWidth="2"
+            strokeColor="#fff"
+            trailWidth="0"
+            trailColor="#000"
+          />
+        </motion.div>
         <Div
           className="carouselNews"
           p={{ t: { lg: "2rem", xl: "2rem" }, x: { lg: "6rem", xl: "8rem" } }}
-          bg="info300"
+          bg="warning300"
         >
-
+          <motion.div animate={textControls}>
           {sites.map(site => {
             const {
               node,
@@ -59,20 +147,22 @@ const CarouselNews = props => {
               }
             } = site;
             return <div>
-              <Text p={{ b: { lg: "1rem", xl: "1rem" } }} textSize="heading" tag="h1">{title}</Text>
+              <Text textWeight="400" textColor="black500" p={{ b: { lg: "1rem", xl: "1rem" } }} textSize="caption" tag="h1">{title}</Text>
               <Text tag="p" w={{ lg: "35vw", xl: "35vw" }} p={{ b: { lg: "1rem", xl: "1rem" } }}>
                 {description}
               </Text>
-              <Div p={{ t: { lg: "1rem", xl: "1rem" }, b: { lg: "2em", xl: "2rem" }  }}>
-                <Text tag="a" textSize="title" onClick={() => location.href = "#"}>
+              <Div p={{ t: { lg: "1rem", xl: "1rem" }, b: { lg: "2em", xl: "2rem" } }}>
+                <Text tag="p" textSize="title" onClick={() => location.href = "#"}>
                   {action}
                 </Text>
               </Div>
             </div>;
           })}
+          </motion.div>
         </Div>
       </Div>
       {/* --- STYLES --- */}
+
       <style jsx>{`
         h1 {
           font-size: 64px !important;
@@ -104,7 +194,8 @@ const CarouselNews = props => {
   );
 };
 {/*CarouselNews.propTypes = {
-};*/}
+};*/
+}
 
 export default CarouselNews;
 

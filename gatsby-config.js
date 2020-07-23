@@ -134,7 +134,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Heebo', 'Ruda', 'Exo']
+          families: ['Heebo', 'Ruda', 'Exo', 'Cedarville Cursive']
         }
       }
     },

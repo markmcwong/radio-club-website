@@ -1,6 +1,6 @@
 ---
 title: Other GatsbyJS starters
-menuTitle: Starters
+menuTitle: ODay
 ---
 
 **HeroBlog** is not my first [GatsbyJS](https://www.gatsbyjs.org/) starter.

@@ -8,7 +8,11 @@ import Headline from "../components/Article/Headline";
 import List from "../components/List";
 import Seo from "../components/Seo";
 import { Col, Container, Div, Text, Row, Image } from "atomize";
-import test from "../images/png/placeholder.png";
+import AnimatedText from "../components/Page/animatedText";
+import placeholder from "../images/png/placeholder.png";
+import newsTeamImage from "../images/jpg/news_reporting_team.jpeg";
+import AnimatedImage from "../components/Page/animatedImage";
+import { motion, useAnimation } from "framer-motion";
 
 const CategoryPage = props => {
   const {
@@ -38,17 +42,18 @@ const CategoryPage = props => {
   });
 
   const categoryList = [];
-
+  const img = (
+    <Image src={newsTeamImage}/>
+  );
   for (var key in categories) {
     categoryList.push([key, categories[key]]);
   }
-
   return (
     <React.Fragment>
       <ThemeContext.Consumer>
         {theme => (
           <div>
-            <Row m={{ t: "8%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+            <Row h="100vh" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
               {/*  <Col size="4">*/}
               {/*    <Article theme={theme}>*/}
               {/*  <header>*/}
@@ -74,17 +79,17 @@ const CategoryPage = props => {
               {/*  `}</style>*/}
               {/*</Article>*/}
               {/*  </Col>*/}
-              <Col size="7">
+              <Col size="7" p={{ t: "2.5%" }}>
                 <Text tag="h6" textSize="subheader">
                   香港科技大學學生會科大校園人民廣播電台
                 </Text>
                 <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>
-                  People's Campus Radio HKUSTSU
+                  People's <br/> Campus Radio <br/>  HKUSTSU
                 </Text>
                 <Text tag="p" textSize="caption" textDecor="underline">
                   Affiliated to the Students' Union of Hong Kong University of Science and Technology
                 </Text>
-                <Text tag="p" textSize="body" p={{ t: "20px" ,r: "10vw"}}>
+                <Text tag="p" textSize="body" p={{ t: "5%", r: "10vw" }}>
                   People's Campus Radio, HKUSTSU was established in 1997, which serves the HKUST community by providing
                   high quality broadcasting service via Internet with the aim of to become one of the major
                   communication channels among the Members of HKUST community.
@@ -93,51 +98,76 @@ const CategoryPage = props => {
                   The objectives of the campus radio shall be to develop an open discussion culture of social and campus
                   affairs and to provide HKUST community oriented information and entertainment services.
                 </Text>
-                <Row>
-                  <Col size="6">
-                    <Text tag="h6" textSize="subheader" p={{ t: "20px" }}>
-                      Key facts
-                    </Text>
-                    <Text tag="p" textSize="caption" p={{ t: "10px" }}>
-                      Founded on 10 February, 1997 <br/>
-                      By Ah-yuet Lee, Anthony Tsang, Robin Szeto and Sun-fung Lin
-                    </Text>
-                  </Col>
-                  <Col size="6">
-                  </Col>
-                </Row>
               </Col>
               <Col size="5" d="flex" align="center">
-                <Image height="auto" src={test} border="1px dashed"/>
+                <Div bg="gray200">
+                <motion.div whileHover={{x: 20, y: 20,
+                  transition: { duration: 0.25 }}} animate={{ opacity: [0, 1] }} transition={{ delay: 0.5, duration: 1.5 }} >
+                  <Image height="auto" src={placeholder} border="1px dashed"/>
+                </motion.div>
+                </Div>
               </Col>
             </Row>
-            <Row m={{ t: "8%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
-              <Col size="7">
-                <Text tag="h1" textSize="5vw">
-                  Cooperation <br/> with other media
+            <Row h="100vh" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
+              <Col size="5" d="flex" align="center">
+                <Image height="110%" width="auto" src={placeholder} border="1px dashed"/>
+              </Col>
+              <Col d="flex" align="center" size="7" p={{l: { xl: "7.5vw", lg: "5vw" }}}>
+                <div>
+                <Text tag="h1" textSize="5vw" textColor="warning200">
+                  <AnimatedText />
+                  with other media
                 </Text>
-                <Text tag="p" textSize="body" p={{ t: "20px" ,r: "10vw"}}>
-                  In 2010, People's Campus Radio, HKUSTSU, RTHK and other university campus radios have started a partner relationship in organizating "Teen Power", a programme for providing university students to recieve formal DJ training and the chance to host a weekly programme at RTHK. In each year, 2 - 5 members from People's Campus Radio, HKUSTSU would be selected to take this one-year DJ internship at RTHK.
+                <Text tag="p" textSize="subheader" p={{ t: "20px", r: "10vw" }} textColor="warning200">
+                  In 2010, People's Campus Radio, HKUSTSU, RTHK and other university campus radios have started a
+                  partner relationship in organizating "Teen Power", a programme for providing university students to
+                  recieve formal DJ training and the chance to host a weekly programme at RTHK. In each year, 2 - 5
+                  members from People's Campus Radio, HKUSTSU would be selected to take this one-year DJ internship at
+                  RTHK.
                 </Text>
                 <Row>
-                  <Col size="6">
-                    <Text tag="h6" textSize="subheader" p={{ t: "20px" }}>
+                  <Col size="6" data-sal="slide-right"
+                       data-sal-delay="100"
+                       data-sal-easing="ease">
+                    <Text tag="h6" textSize="subheader" p={{ t: "30px" }} textColor="warning200">
                       Interviewed by
                     </Text>
-                    <Text tag="p" textSize="caption" p={{ t: "10px" }}>
+                    <Text tag="p" textSize="paragraph" p={{ t: "20px" }} textColor="warning200">
                       The Sun Daily<br/>
                       Hi-tech Weekly<br/>PC Home<br/>Singpao<br/>Cult<br/>eZone
                     </Text>
                   </Col>
-                  <Col size="6">
-                    <Text tag="h6" textSize="subheader" p={{ t: "20px" }}>
+                  <Col size="6" data-sal="slide-right"
+                       data-sal-delay="100"
+                       data-sal-easing="ease">
+                    <Text tag="h6" textSize="subheader" p={{ t: "30px" }} textColor="warning200">
                       Co-operated with
                     </Text>
-                    <Text tag="p" textSize="caption" p={{ t: "10px" }}>
-                      RTHK<br/>The Campus Radio of Chinese University Hong Kong<br/>PolyU Campus Radio<br/>HKBU CommChannel<br/>Stareastnet.com<br/>36.com
+                    <Text tag="p" textSize="paragraph" p={{ t: "20px" }} textColor="warning200">
+                      RTHK<br/>The Campus Radio of Chinese University Hong Kong<br/>PolyU Campus Radio<br/>HKBU
+                      CommChannel<br/>Stareastnet.com<br/>36.com
                     </Text>
                   </Col>
                 </Row>
+                </div>
+              </Col>
+            </Row>
+            <Row h="100vh" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+              <Col d="flex" align="center" size="7">
+                <div>
+                  <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>
+                    Radio News Reporting Team
+                  </Text>
+                  <Text tag="p" textSize="title" p={{ t: "5%", r: "10vw" }}>
+                    As one of the medias in HKUST, it's our civic responsibility to update students on current affairs, and report major events in Hong Kong. That's why we have founded the Radio News Reporting Team.
+                  </Text>
+                  <Text tag="h1" textSize="3vw" p={{ t: "5%" }}>
+                    We aim to provide <i>unbiased news</i>, <i>information</i> and <i>share opinions with our fellow students</i>
+                  </Text>
+                </div>
+              </Col>
+              <Col size="5" d="flex" align="center">
+                <AnimatedImage colour="grey" children={img}/>
               </Col>
             </Row>
           </div>

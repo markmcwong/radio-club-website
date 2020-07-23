@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CarouselNews from "./CarouselNews";
 import { FaArrowDown } from "react-icons/fa/";
-import { Div, Text } from "atomize";
 
 const Hero = props => {
   const { scrollToContent, backgrounds, theme, site } = props;
@@ -28,8 +27,6 @@ const Hero = props => {
           justify-content: center;
           min-height: 100vh;
           height: 100px;
-          padding: ${theme.space.inset.l};
-          padding-top: ${theme.header.height.homepage};
         }
 
         h1 {
