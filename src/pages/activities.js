@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { graphql } from "gatsby";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+
 require("core-js/fn/array/find");
 
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
@@ -14,13 +15,42 @@ import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeli
 const ActivitiesPage = props => {
   const {
     data: {
-      allJongJson: { edges: jongs = [] }
+      allJongJson: { edges: jongs = [] },
+      allFile: { edges: files = [] },
+      allActivitiesJson: { edges: activities = [] }
     }
   } = props;
   const backgroundControls = useAnimation();
   const animationControls = useAnimation();
   const opacityControls = useAnimation();
   const overlayControls = useAnimation();
+  const [filter, setFilter] = useState("");
+  const [activityFilter, setActivityFilter] = useState("General Broadcasting");
+  const reverse = () => {
+    console.log("reversing")
+    opacityControls.start({
+      opacity: 1
+    });
+    animationControls.start({
+      position: "fixed",
+      transition: { duration: 0.75, times: [0, 0.5, 0.8, 1] },
+      display: "none"
+    });
+    backgroundControls.start({
+      height: [ "100vh", "40vh"],
+      position: "fixed",
+      display: "none",
+      top: -1,
+      width: "100vw",
+      zIndex: "-1",
+      transition: { duration: 0.5, times: [0, 1] }
+    });
+    overlayControls.start({
+      opacity: [1, 0],
+      display: "none",
+      transition: { duration: 0.5, delay: 0.5, times: [0, 1] }
+    });
+  };
   return (
     <React.Fragment>
       <motion.div style={{ display: "none" }} animate={animationControls}>
@@ -93,24 +123,23 @@ const ActivitiesPage = props => {
             Past year events
           </Text>
           <Div d="flex" minW="100%" h="100%" overflow="visible scroll" style={{ overflowY: "hidden" }}>
-            {jongs.map(jong => {
+            {jongs.map((jong, i) => {
               // tests.map(test => {});
-              console.log("+1 exist")
               const {
                 node,
-                node: { name }
+                node: { name, year }
               } = jong;
-              const posRef = useRef()
+              const posRef = useRef();
               const actions = () => {
                 const { offsetTop, offsetLeft } = posRef.current;
-                const left = offsetLeft/window.innerWidth * 100;
+                const left = offsetLeft / window.innerWidth * 100;
                 let margin = 0;
-                margin = (left-45)/3
-                console.log(offsetLeft/window.innerWidth * 100);
+                margin = (left - 45) / 3;
+                console.log(offsetLeft / window.innerWidth * 100);
                 animationControls.start({
                   position: "fixed",
                   opacity: 1,
-                  x: [left+"vw", (45+ 2*margin) + "vw", (45+ 1*margin)  +"vw", "45vw"],
+                  x: [left + "vw", (45 + 2 * margin) + "vw", (45 + 1 * margin) + "vw", "45vw"],
                   y: ["80vh", "50vh", "40vh", "40vh"],
                   scale: [1, 1.5, 2, 3.5],
                   transition: { duration: 0.75, times: [0, 0.5, 0.8, 1] },
@@ -124,6 +153,7 @@ const ActivitiesPage = props => {
                   position: "fixed",
                   top: 0,
                   width: "100vw",
+                  display: "block",
                   zIndex: "-1",
                   transition: { duration: 0.5, times: [0, 1] }
                 });
@@ -134,18 +164,33 @@ const ActivitiesPage = props => {
                 });
               };
               return (
-                <Div ref={posRef} w="25%" p={{ y: "20px", r: "20px" }} d="inline-block" h="100%" style={{ cursor: "pointer" }}  onClick={(e) => actions(e)}>
+                <Div ref={posRef} w="25%" p={{ y: "20px", r: "20px" }} d="inline-block" h="100%"
+                     style={{ cursor: "pointer" }} onClick={(e) => actions(e)}>
                   <Text tag="h4" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
                     {name}
                   </Text>
-                  <Div
-                    bgImg={placeholder}
-                    bgSize="cover"
-                    bgPos="center"
-                    w="20vw"
-                    h="80%"
-                    shadow="3"
-                  />
+                  {
+                    files[i] && files[i].node.base.startsWith("ex-") &&
+                    <Div
+                      bgImg={files[i].node.childImageSharp.fluid.src}
+                      bgSize="cover"
+                      bgPos="center"
+                      w="20vw"
+                      h="80%"
+                      shadow="4"
+                      onClick={() =>
+                        setFilter(year)}
+                    />
+                  }
+                  {/*<Div*/}
+                  {/*  shadow="3"*/}
+                  {/*  bgImg={placeholder}*/}
+                  {/*  bgSize="cover"*/}
+                  {/*  bgPos="center"*/}
+                  {/*  w="20vw"*/}
+                  {/*  h="80%"*/}
+                  {/*  shadow="3"*/}
+                  {/*/>*/}
                 </Div>
               );
             })}
@@ -155,11 +200,16 @@ const ActivitiesPage = props => {
       <motion.div style={{ display: "none" }} animate={overlayControls}>
         <Div pos="absolute" left="0" top="0" bg="warning500">
           <Row h="100vh" p={{ b: "10vh", t: "10vh", x: { xl: "4vw", lg: "2vw" } }}>
-            <Text pos="absolute" tag="p" textWeight="300" textSize="title" p={{ l: "2.5%" }}>
-              ←Back
-            </Text>
+            <Div>
+              <Text onClick={() => reverse()} pos="absolute" tag="p" textWeight="300" textSize="title" p={{ l: "2.5%" }}>
+                ←Back
+              </Text>
+            </Div>
             <Col size="4" p="2.5%" d="flex" align="center">
-              <Image shadow="4" src={newsTeamImage} style={{ zIndex: 2 }}/>
+              <Image shadow="4" src={files.filter(function(img) {
+                return img.node.base.startsWith(filter)
+                  && img.node.base.endsWith(activityFilter + ".jpg");
+              })[0].node.childImageSharp.fluid.src} style={{ zIndex: 2 }}/>
             </Col>
             <Col shadow="5" style={{
               marginLeft: "-15vw",
@@ -167,142 +217,90 @@ const ActivitiesPage = props => {
               maxWidth: "80%",
               flex: "0 1 80%"
             }} d="flex" align="center" flexDir="row" size="8" bg="white">
-              <Col h="100%" size="7" d="flex" align="center" p={{ t: "2.5%", l: { xl: "3vw", lg: "2vw" } }}>
-                <div>
-                  <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
-                    General Broadcasting
-                  </Text>
-                  <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
-                    Date & Time
-                  </Text>
-                  <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
-                    19th March 2019 - 2rd May 2019, 19:30 - 22:30
-                  </Text>
-                  <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
-                    Venue
-                  </Text>
-                  <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
-                    Room LG5208 Activity Room
-                  </Text>
-                </div>
-              </Col>
+              {activities.map((activity, i) => {
+                const {
+                  node,
+                  node: {
+                    title,
+                    year,
+                    subtitle1,
+                    subtitle2,
+                    content1,
+                    content2
+                  }
+                } = activity;
+                console.log(filter);
+                if (year == filter && activityFilter == title) {
+                  return (
+                    <Col h="100%" size="7" d="flex" align="center" p={{ t: "2.5%", l: { xl: "3vw", lg: "2vw" } }}>
+                      <div>
+                        <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
+                          {title}
+                        </Text>
+                        <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
+                          {subtitle1}
+                        </Text>
+                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
+                          {content1}
+                        </Text>
+                        <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
+                          {subtitle2}
+                        </Text>
+                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
+                          {content2}
+                        </Text>
+                      </div>
+                    </Col>
+                  );
+                }
+              })
+              }
               <Col shadow="5" h="80vh" size="5" overflow="scroll" style={{ overflowX: "hidden" }}>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019 - Rhapsody
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
-                <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }}>
-                  <Col size="3" align="center" d="flex" flexDir="row">
-                    <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }} src={newsTeamImage}/>
-                  </Col>
-                  <Col size="8" align="center" d="flex" flexDir="row">
-                    <Div>
-                      <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
-                        General Broadcasting
-                      </Text>
-                      <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                            p={{ l: "20px", t: "5px" }}>
-                        2019
-                      </Text>
-                    </Div>
-                  </Col>
-                </Div>
+                {activities.map((activity, i) => {
+                  const {
+                    node,
+                    node: {
+                      title,
+                      year,
+                      jong
+                    }
+                  } = activity;
+
+                  let filteredImg = files.filter(function(img) {
+                    console.log(img.node.base);
+                    return img.node.base.startsWith(filter)
+                      && img.node.base.endsWith(title + ".jpg");
+                  })[0];
+                  console.log(filteredImg);
+                  console.log(filter, activityFilter);
+                  if (year == filter) {
+                    return (
+                      <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }} cursor="pointer" onClick={() =>
+                        setActivityFilter(title)}>
+                        <Col size="3" align="center" d="flex" flexDir="row">
+                          <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }}
+                                 src={filteredImg && filteredImg.node.childImageSharp.fluid.src}/>
+                        </Col>
+                        <Col size="8" align="center" d="flex" flexDir="row">
+                          <Div>
+                            <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
+                              {title}
+                            </Text>
+                            <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
+                                  p={{ l: "20px", t: "5px" }}>
+                              {jong}
+                            </Text>
+                          </Div>
+                        </Col>
+                      </Div>
+                    );
+                  }
+                })
+                }
               </Col>
             </Col>
           </Row>
-        </Div>;
+        </Div>
       </motion.div>
       {/* --- STYLES --- */}
       <style jsx>{`
@@ -332,6 +330,38 @@ export const query = graphql`
       edges {
         node {
           name
+          year
+        }
+      }
+    }
+    allActivitiesJson {
+      edges {
+        node {
+          title
+          year
+          subtitle1
+          subtitle2
+          content1
+          content2
+          jong
+        }
+      }
+    }
+    allFile(
+      sort: {fields: base, order: DESC},
+      filter: {
+        extension: { regex: "/(jpg)|(png)|(jpeg)/" }
+        relativeDirectory: { eq: "activities/jong" }
+      }
+    ) {
+      edges {
+        node {
+          base
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
         }
       }
     }

@@ -1,38 +1,52 @@
 [
   {
-    "link": "a",
-    "title": "科大電台新星試打\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
-    "colour": "rgb(233, 30, 99)",
-    "label": "節目詳情",
-    "timeline" : "one"
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "19th March 2019 - 2rd May 2019, 19:30 - 22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
   },
   {
-    "link": "a",
-    "title": "科大電台新星試打\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
-    "colour": "rgb(33, 150, 243)",
-    "label": "節目詳情",
-    "timeline" : "one"
+    "title": "Live Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "30th April 2019 14:00 - 15:00",
+    "subtitle2": "Venue",
+    "content2": "Common 1+2",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
   },
   {
-    "link": "a",
-    "title": "test\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
-    "colour": "rgb(233, 30, 99)",
-    "label": "節目詳情",
-    "timeline" : "one"
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "12th August 2019 - 14th August 2019",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
   },
   {
-    "link": "a",
-    "title": "科大電台新星試打\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
-    "colour": "rgb(233, 30, 99)",
-    "label": "節目詳情",
-    "timeline" : "two"
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "19th March 2019 - 2rd May 2019, 19:30 - 22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "12th August 2019 - 14th August 2019",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
   }
 ]

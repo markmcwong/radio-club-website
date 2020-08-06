@@ -75,7 +75,7 @@ class IndexPage extends React.Component {
             />
           )}
         </ThemeContext.Consumer>
-        <Row h="90vh" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+        <Row h="100vh" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
           {/*  <Col size="4">*/}
           {/*    <Article theme={theme}>*/}
           {/*  <header>*/}

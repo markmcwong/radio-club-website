@@ -1,32 +1,42 @@
 [
   {
-    "name": "2019-2020 Rhapsody"
+    "name": "2019-2020 Rhapsody",
+    "year": 2019
   },
   {
-    "name": "2018-2019 Rambled"
+    "name": "2018-2019 Rambled",
+    "year": 2018
   },
   {
-    "name": "2017-2018 Skywalker"
+    "name": "2017-2018 Skywalker",
+    "year": 2017
   },
   {
-    "name": "2016-2017 Radioactive"
+    "name": "2016-2017 Radioactive",
+    "year": 2016
   },
   {
-    "name": "2015-2016 Radiant"
+    "name": "2015-2016 Radiant",
+    "year": 2015
   },
   {
-    "name": "2014-2015 Razzle"
+    "name": "2014-2015 Razzle",
+    "year": 2014
   },
   {
-    "name": "2013-2014 Rapture"
+    "name": "2013-2014 Rapture",
+    "year": 2013
   },
   {
-    "name": "2012-2013 Rally"
+    "name": "2012-2013 Rally",
+    "year": 2012
   },
   {
-    "name": "2012-2013 Ratoon"
+    "name": "2011-2012 Ratoon",
+    "year": 2011
   },
   {
-    "name": "2012-2013 Racon"
+    "name": "2010-2011 Racon",
+    "year": 2010
   }
 ]

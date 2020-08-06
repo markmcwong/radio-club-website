@@ -1,163 +1,412 @@
 import PropTypes from "prop-types";
-import React from "react";
-import { graphql } from "gatsby";
+import React, { useState } from "react";
+import { graphq, navigate, Link } from "gatsby";
 
 require("core-js/fn/array/find");
 
-import Article from "../components/Article";
-import Search from "../components/Search";
-import { ThemeContext } from "../layouts";
-import Seo from "../components/Seo";
-import newsTeamImage from "../images/jpg/20gb.jpg";
-
-import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
-import { Col, Container, Div, Text, Row, Image } from "atomize";
-
+// import TestPage from "../components/demo"
+import { Dropdown, Col, Container, Div, Text, Row, Image, Button, Icon } from "atomize";
+import placeholder from "../images/png/placeholder.png";
+import { motion, useAnimation } from "framer-motion";
 
 const ProgrammesPage = props => {
+  const menuList = (
+    <Div>
+      {["General Broadcasting", "New Star Hit", "Radio Drama", "Interviews / Special"].map((name, index) => (
+        <Div d="block" p="0.5rem" onClick={() =>
+          setFilter(name)}>
+          {name}
+        </Div>
+      ))}
+    </Div>
+  );
+  const {
+    data: {
+      allProgrammesJson: { edges: programmes = [] }
+    }
+  } = props;
+  const nav = (year) => {
+    console.log(year)
+    navigate(
+      "/demo/",
+      // highlight-start
+      {
+        state: {dateFilter: year}
+      }
+      // highlight-end
+    );
+  };
+  const tabNames = ["Any Programmes", "General Broadcasting", "Interviews / Special", "Radio Drama"];
+  const setCurrentProgramme = (index) => {
+    const old = active;
+    if (old != index) {
+      setActive(index);
+      gbControls.start({
+        width: (index == 1) ? ["5vw", "60vw"] : "5vw",
+        marginTop: (index == 1) ? [50 * (1 - old), "0"] : Math.abs(50 * (1 - index)),
+        padding: (index == 1) ? "50px" : "0px",
+        transition: { duration: 1, times: [0, 1] }
+      });
+      pastProgrammesControls.start({
+        width: (index == 0) ? ["5vw", "60vw"] : "5vw",
+        marginTop: [Math.abs(50 * (0 - old)), Math.abs(50 * (0 - index))],
+        marginLeft: (index == 0) ? 0 : ["0vw", "-" + 5 * (index) + "vw"],
+        transition: { duration: 1, times: [0, 1] }
+      });
+      interviewControls.start({
+        width: (index == 2) ? ["5vw", "60vw"] : "5vw",
+        marginTop: [Math.abs(50 * (2 - old)), Math.abs(50 * (2 - index))],
+        padding: (index == 2) ? "50px" : "0px",
+        transition: { duration: 1, times: [0, 1] }
+      });
+      dramaControls.start({
+        width: (index == 3) ? ["5vw", "60vw"] : "5vw",
+        marginTop: [Math.abs(50 * (3 - old)), Math.abs(50 * (3 - index))],
+        padding: (index == 3) ? "50px" : "0px",
+        transition: { duration: 1, times: [0, 1] }
+      });
+      setFilter(tabNames[index]);
+    }
+  };
+  const gbControls = useAnimation();
+  const pastProgrammesControls = useAnimation();
+  const interviewControls = useAnimation();
+  const dramaControls = useAnimation();
 
+  const [filter, setFilter] = useState("Any Programmes");
+  const [dropDown, showDropDown] = useState(false);
+  const [catDown, showCatDown] = useState(false);
+  const [active, setActive] = useState(0);
   return (
     <React.Fragment>
-      <Div bg="warning500">
-        <Row h="100vh" p={{ b: "10vh", t: "10vh", x: { xl: "4vw", lg: "2vw" } }}>
-          <Text pos="absolute" tag="p" textWeight="300" textSize="title" p={{l:"2.5%"}}>
-            ←Back
-          </Text>
-          <Col size="4" p="2.5%" d="flex" align="center">
-              <Image shadow="4" src={newsTeamImage} style={{zIndex: 2}}/>
-          </Col>
-          <Col shadow="5" style={{marginLeft: "-15vw",
-            paddingLeft: "15vw",
-            maxWidth: "80%",
-            flex: "0 1 80%"}} d="flex" align="center" flexDir="row" size="8" bg="white">
-            <Col h="100%" size="7" d="flex" align="center" p={{ t: "2.5%", l: { xl: "3vw", lg: "2vw" } }}>
-              <div>
-                <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
+      <Div bg="warning100">
+        <Col p={{ b: "10vh", t: "10vh", x: { xl: "5vw", lg: "2vw" } }}>
+          {/*<TestPage style={{height: "100vh", width: "100vw", zIndex: 200}}/>*/}
+          <Row>
+            <Div cursor="pointer" tag="h1" textSize="6vw" p={{ t: "10px" }}>
+              Programmes
+            </Div>
+          </Row>
+
+          <Row p={{ y: "5vh" }}>
+            <Col size="3">
+              <Dropdown style={{
+                background: "transparent",
+                borderRadius: 0,
+                borderTop: "none",
+                borderLeft: "none",
+                borderRight: "none"
+              }}
+                        isOpen={dropDown}
+                        onClick={() =>
+                          showDropDown(!dropDown)
+                        }
+                        menu={menuList}
+              >
+                {filter}
+              </Dropdown>
+            </Col>
+            <Col size="3">
+              <Dropdown style={{
+                background: "transparent",
+                borderRadius: 0,
+                borderTop: "none",
+                borderLeft: "none",
+                borderRight: "none"
+              }}
+                        isOpen={catDown}
+                        onClick={() =>
+                          showCatDown(!catDown)
+                        }
+                        menu={menuList}
+              >
+                2019-2020
+              </Dropdown>
+            </Col>
+            <Col d="flex">
+              <Button
+                h="2.5rem"
+                w="2.5rem"
+                bg="success700"
+                hoverBg="success600"
+                rounded="circle"
+                m={{ r: "1rem" }}
+                shadow="2"
+                hoverShadow="4"
+              >
+                <Icon name="LeftArrow" size="20px" color="white"/>
+              </Button>
+              <Button
+                h="2.5rem"
+                w="2.5rem"
+                bg="success700"
+                hoverBg="success600"
+                rounded="circle"
+                m={{ r: "1rem" }}
+                shadow="2"
+                hoverShadow="4"
+              >
+                <Icon name="RightArrow" size="20px" color="white"/>
+              </Button>
+            </Col>
+          </Row>
+          <Row>
+            <motion.div onClick={() => setCurrentProgramme(0)}
+                        style={{ backgroundColor: "rgb(225, 228, 232)", padding: "5vh", width: "60vw" }}
+                        animate={pastProgrammesControls}>
+              {active != 0 &&
+              <Div align="center" flexDir="column" d="flex">
+                <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
+                      style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
+                  Past Programmes
+                </Text>
+              </Div>
+              }
+              {active == 0 && <Div>
+                <Text tag="h1" textSize="subheader" textWeight="400" p={{ t: "10px" }}>
+                  Rewind
+                </Text>
+                <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
+                  {filter === "" && "Past Programmes"}
+                  {filter}
+                </Text>
+                <Div>
+                  <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
+                    <Col size="4">
+                      <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                        Date
+                      </Text>
+                    </Col>
+                    <Col size="8">
+                      <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                        Programme Name
+                      </Text>
+                    </Col>
+                  </Row>
+                  {programmes.map(jong => {
+                    // tests.map(test => {});
+                    const {
+                      node,
+                      node: { name, date, type, year }
+                    } = jong;
+
+                    if (type === filter || filter === "Any Programmes") {
+                      return (
+                        <Row onClick={() => nav(year)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                          <Col size="4">
+                            <Text tag="h1" textSize="display1">
+                              {date}
+                            </Text>
+                          </Col>
+                          <Col size="8">
+                            <Text tag="h1" textSize="display1">
+                              {name}
+                            </Text>
+                          </Col>
+                        </Row>
+                      );
+                    }
+                  })}
+                </Div>
+              </Div>}
+            </motion.div>
+            <motion.div style={{
+              marginTop: "50px",
+              verticalAlign: "bottom",
+              width: "5vw",
+              backgroundColor: "rgb(251, 224, 161)"
+            }} animate={gbControls}>
+              <Div cursor="pointer" onClick={() => setCurrentProgramme(1)} h="100%" align="center"
+                   flexDir="column" d="flex">
+                {active != 1 &&
+                <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
+                      style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
                   General Broadcasting
                 </Text>
-                <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
-                  Date & Time
+                }
+                {active == 1 &&
+                <Div>
+                  <Text tag="h1" textSize="subheader" textWeight="400" p={{ t: "10px" }}>
+                    Rewind
+                  </Text>
+                  <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
+                    General Broadcasting
+                  </Text>
+                  <Div>
+                    <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
+                      <Col size="4">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Date
+                        </Text>
+                      </Col>
+                      <Col size="8">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Programme Name
+                        </Text>
+                      </Col>
+                    </Row>
+                    {programmes.map(jong => {
+                      // tests.map(test => {});
+                      const {
+                        node,
+                        node: { name, date, type }
+                      } = jong;
+
+                      if (type === "General Broadcasting") {
+                        return (
+                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                            <Col size="4">
+                              <Text tag="h1" textSize="display1">
+                                {date}
+                              </Text>
+                            </Col>
+                            <Col size="8">
+                              <Text tag="h1" textSize="display1">
+                                {name}
+                              </Text>
+                            </Col>
+                          </Row>
+                        );
+                      }
+                    })}
+                  </Div>
+                </Div>
+                }
+              </Div>
+            </motion.div>
+            <motion.div style={{
+              marginTop: "100px",
+              verticalAlign: "bottom",
+              width: "5vw",
+              backgroundColor: "rgb(220, 238, 255)"
+            }} animate={interviewControls}>
+              <Div cursor="pointer" onClick={() => setCurrentProgramme(2)} h="100%" align="center"
+                   flexDir="column" d="flex">
+                {active != 2 &&
+                <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
+                      style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
+                  Interviews / Special
                 </Text>
-                <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
-                  19th March 2019 - 2rd May 2019, 19:30 - 22:30
+                }
+                {active == 2 &&
+                <Div>
+                  <Text tag="h1" textSize="subheader" textWeight="400" p={{ t: "10px" }}>
+                    Rewind
+                  </Text>
+                  <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
+                    Interviews / Special
+                  </Text>
+                  <Div>
+                    <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
+                      <Col size="4">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Date
+                        </Text>
+                      </Col>
+                      <Col size="8">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Programme Name
+                        </Text>
+                      </Col>
+                    </Row>
+                    {programmes.map(jong => {
+                      // tests.map(test => {});
+                      const {
+                        node,
+                        node: { name, date, type }
+                      } = jong;
+
+                      if (type === "Interviews / Special") {
+                        return (
+                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                            <Col size="4">
+                              <Text tag="h1" textSize="display1">
+                                {date}
+                              </Text>
+                            </Col>
+                            <Col size="8">
+                              <Text tag="h1" textSize="display1">
+                                {name}
+                              </Text>
+                            </Col>
+                          </Row>
+                        );
+                      }
+                    })}
+                  </Div>
+                </Div>
+                }
+              </Div>
+            </motion.div>
+            <motion.div style={{
+              marginTop: "150px",
+              verticalAlign: "bottom",
+              width: "5vw",
+              backgroundColor: "rgb(253, 232, 225)"
+            }} animate={dramaControls}>
+              <Div cursor="pointer" onClick={() => setCurrentProgramme(3)} h="100%" align="center"
+                   flexDir="column" d="flex">
+                {active != 3 &&
+                <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
+                      style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
+                  Radio Drama
                 </Text>
-                <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
-                  Venue
-                </Text>
-                <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
-                  Room LG5208 Activity Room
-                </Text>
-              </div>
-            </Col>
-            <Col shadow="5" h="80vh" size="5"  overflow="scroll" style={{overflowX: "hidden"}}>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
+                }
+                {active == 3 &&
+                <Div>
+                  <Text tag="h1" textSize="subheader" textWeight="400" p={{ t: "10px" }}>
+                    Rewind
+                  </Text>
+                  <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
+                    Interviews / Special
+                  </Text>
                   <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019 - Rhapsody
-                    </Text>
+                    <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
+                      <Col size="4">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Date
+                        </Text>
+                      </Col>
+                      <Col size="8">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Programme Name
+                        </Text>
+                      </Col>
+                    </Row>
+                    {programmes.map(jong => {
+                      // tests.map(test => {});
+                      const {
+                        node,
+                        node: { name, date, type }
+                      } = jong;
+
+                      if (type === "Radio Drama") {
+                        return (
+                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                            <Col size="4">
+                              <Text tag="h1" textSize="display1">
+                                {date}
+                              </Text>
+                            </Col>
+                            <Col size="8">
+                              <Text tag="h1" textSize="display1">
+                                {name}
+                              </Text>
+                            </Col>
+                          </Row>
+                        );
+                      }
+                    })}
                   </Div>
-                </Col>
+                </Div>
+                }
               </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-              <Div shadow="3" m="5px" d="flex" flexDir="row" p={{y:"10px"}}>
-                <Col size="3" align="center" d="flex" flexDir="row">
-                  <Image h="5" shadow="5" style={{objectFit: "cover", zIndex: 2}} src={newsTeamImage}/>
-                </Col>
-                <Col size="8" align="center"  d="flex" flexDir="row">
-                  <Div>
-                    <Text textWeight="200" tag="h6" textSize="subheader" p={{ l:"20px"}}>
-                      General Broadcasting
-                    </Text>
-                    <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader" p={{ l:"20px", t: "5px" }}>
-                      2019
-                    </Text>
-                  </Div>
-                </Col>
-              </Div>
-            </Col>
-          </Col>
-        </Row>
+            </motion.div>
+          </Row>
+
+
+        </Col>
+
       </Div>
       {/* --- STYLES --- */}
       <style jsx>{`
@@ -179,5 +428,18 @@ ProgrammesPage.propTypes = {
 };
 
 export default ProgrammesPage;
-
+export const query = graphql`
+  query ProgrammesQuery {
+    allProgrammesJson {
+      edges {
+        node {
+          name
+          date
+          type
+          year
+        }
+      }
+    }
+  }
+`;
 //eslint-disable-next-line no-undef
