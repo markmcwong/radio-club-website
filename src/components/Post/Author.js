@@ -9,15 +9,15 @@ const Author = props => {
 
   return (
     <React.Fragment>
-      <div className="author">
-        <div className="avatar">
-          <img
-            src={config.gravatarImgMd5 == "" ? avatar : config.gravatarImgMd5}
-            alt={config.siteTitle}
-          />
-        </div>
-        <div className="note" dangerouslySetInnerHTML={{ __html: note }} />
-      </div>
+      {/*<div className="author">*/}
+      {/*  <div className="avatar">*/}
+      {/*    <img*/}
+      {/*      src={config.gravatarImgMd5 == "" ? avatar : config.gravatarImgMd5}*/}
+      {/*      alt={config.siteTitle}*/}
+      {/*    />*/}
+      {/*  </div>*/}
+      {/*  <div className="note" dangerouslySetInnerHTML={{ __html: note }} />*/}
+      {/*</div>*/}
 
       {/* --- STYLES --- */}
       <style jsx>{`
