@@ -1,6 +1,6 @@
 [
   {
-    "link": "a",
+    "link": "https://radio.su.ust.hk/programme/16nsh.html",
     "title": "科大電台新星試打\n",
     "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
     "date": "15-10-2019",
@@ -9,30 +9,29 @@
     "timeline" : "one"
   },
   {
-    "link": "a",
-    "title": "科大電台新星試打\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
+    "link": "su_radio@connect.ust.hk",
+    "title": "成立突發新聞採訪小組",
+    "description": "本台作為香港科技大學的傳播媒體之一，我們責無旁貸，為各位科大學生報導現時香港的狀況。因此，本台決定成立突發新聞採訪小組，為任何大型事件作出現場報導。\n\n小組現已有二十名成員，若有本台會員有興趣參與小組之工作(前線報導、直播、撰文)，可以參考以下聯繫方式，跟我們聯絡。",
+    "date": "07-09-2019",
     "colour": "rgba(255, 183, 68, 0.95)",
-    "label": "節目詳情",
+    "label": "Email : su_radio@connect.ust.hk",
     "timeline" : "one"
   },
   {
     "link": "a",
-    "title": "test\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
+    "title": "迎新周",
+    "description": "電台counter 由今日開始招收新member啦！\n\n由9月16號到9月20號，每日上晝9點到下晝6點，Atrium counter見！",
+    "date": "03-09-2019",
     "colour": "rgba(255, 183, 68, 0.95)",
-    "label": "節目詳情",
     "timeline" : "one"
   },
   {
-    "link": "a",
-    "title": "科大電台新星試打\n",
-    "description": "一眾新星會在逢星期二至四晚上七點三十分至十點三十分為大家送上全新節目，萬勿錯過！",
-    "date": "15-10-2019",
+    "link": "https://radio.su.ust.hk/Fm%20guide/USTMAP2019.html",
+    "title": "科大入學攻略",
+    "description": "各位科大新生，快啲過黎呢度睇下我地為你精心準備嘅入學攻略啦!",
+    "date": "07-08-2019",
     "colour": "rgba(255, 183, 68, 0.95)",
-    "label": "節目詳情",
+    "label": "獨家攻略",
     "timeline" : "one"
   }
 ]

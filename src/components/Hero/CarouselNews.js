@@ -53,7 +53,7 @@ const CarouselNews = props => {
     three
   ];
   const text = [
-    <>Hello, We're<br/> Radio <br/></>,
+    <>Welcome <br/> to Radio <br/></>,
     <>General Broadcast <br/> Caption <br/></>,
     <>Some Suitable <br/> Caption <br/></>,
   ];

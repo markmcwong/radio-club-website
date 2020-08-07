@@ -25,18 +25,18 @@ const ProgrammesPage = props => {
       allProgrammesJson: { edges: programmes = [] }
     }
   } = props;
-  const nav = (year) => {
+  const nav = (year, type) => {
     console.log(year)
     navigate(
       "/demo/",
       // highlight-start
       {
-        state: {dateFilter: year}
+        state: {dateFilter: year, typeFilter: type}
       }
       // highlight-end
     );
   };
-  const tabNames = ["Any Programmes", "General Broadcasting", "Interviews / Special", "Radio Drama"];
+  const tabNames = ["Any Programmes", "General Broadcasting", "New Star Hit", "Interviews / Special", "Radio Drama"];
   const setCurrentProgramme = (index) => {
     const old = active;
     if (old != index) {
@@ -53,16 +53,22 @@ const ProgrammesPage = props => {
         marginLeft: (index == 0) ? 0 : ["0vw", "-" + 5 * (index) + "vw"],
         transition: { duration: 1, times: [0, 1] }
       });
-      interviewControls.start({
+      nshControls.start({
         width: (index == 2) ? ["5vw", "60vw"] : "5vw",
         marginTop: [Math.abs(50 * (2 - old)), Math.abs(50 * (2 - index))],
         padding: (index == 2) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
       });
-      dramaControls.start({
+      interviewControls.start({
         width: (index == 3) ? ["5vw", "60vw"] : "5vw",
         marginTop: [Math.abs(50 * (3 - old)), Math.abs(50 * (3 - index))],
         padding: (index == 3) ? "50px" : "0px",
+        transition: { duration: 1, times: [0, 1] }
+      });
+      dramaControls.start({
+        width: (index == 4) ? ["5vw", "60vw"] : "5vw",
+        marginTop: [Math.abs(50 * (4 - old)), Math.abs(50 * (4 - index))],
+        padding: (index == 4) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
       });
       setFilter(tabNames[index]);
@@ -70,6 +76,7 @@ const ProgrammesPage = props => {
   };
   const gbControls = useAnimation();
   const pastProgrammesControls = useAnimation();
+  const nshControls = useAnimation();
   const interviewControls = useAnimation();
   const dramaControls = useAnimation();
 
@@ -192,7 +199,7 @@ const ProgrammesPage = props => {
 
                     if (type === filter || filter === "Any Programmes") {
                       return (
-                        <Row onClick={() => nav(year)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                        <Row onClick={() => nav(year, type)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
                           <Col size="4">
                             <Text tag="h1" textSize="display1">
                               {date}
@@ -249,12 +256,12 @@ const ProgrammesPage = props => {
                       // tests.map(test => {});
                       const {
                         node,
-                        node: { name, date, type }
+                        node: { name, date, type, year }
                       } = jong;
 
                       if (type === "General Broadcasting") {
                         return (
-                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                          <Row onClick={() => nav(year, type)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
                             <Col size="4">
                               <Text tag="h1" textSize="display1">
                                 {date}
@@ -279,13 +286,13 @@ const ProgrammesPage = props => {
               verticalAlign: "bottom",
               width: "5vw",
               backgroundColor: "rgb(220, 238, 255)"
-            }} animate={interviewControls}>
+            }} animate={nshControls}>
               <Div cursor="pointer" onClick={() => setCurrentProgramme(2)} h="100%" align="center"
                    flexDir="column" d="flex">
                 {active != 2 &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  Interviews / Special
+                  New Star Hit
                 </Text>
                 }
                 {active == 2 &&
@@ -294,7 +301,7 @@ const ProgrammesPage = props => {
                     Rewind
                   </Text>
                   <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
-                    Interviews / Special
+                    New Star Hit
                   </Text>
                   <Div>
                     <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
@@ -313,12 +320,12 @@ const ProgrammesPage = props => {
                       // tests.map(test => {});
                       const {
                         node,
-                        node: { name, date, type }
+                        node: { name, date, type, year }
                       } = jong;
 
-                      if (type === "Interviews / Special") {
+                      if (type === "New Star Hit") {
                         return (
-                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                          <Row onClick={() => nav(year, type)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
                             <Col size="4">
                               <Text tag="h1" textSize="display1">
                                 {date}
@@ -342,14 +349,14 @@ const ProgrammesPage = props => {
               marginTop: "150px",
               verticalAlign: "bottom",
               width: "5vw",
-              backgroundColor: "rgb(253, 232, 225)"
-            }} animate={dramaControls}>
+              backgroundColor: "rgb(234, 247, 241)"
+            }} animate={interviewControls}>
               <Div cursor="pointer" onClick={() => setCurrentProgramme(3)} h="100%" align="center"
                    flexDir="column" d="flex">
                 {active != 3 &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  Radio Drama
+                  Interviews / Special
                 </Text>
                 }
                 {active == 3 &&
@@ -377,12 +384,76 @@ const ProgrammesPage = props => {
                       // tests.map(test => {});
                       const {
                         node,
-                        node: { name, date, type }
+                        node: { name, date, type, year }
+                      } = jong;
+
+                      if (type === "Interviews / Special") {
+                        return (
+                          <Row onClick={() => nav(year, type)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                            <Col size="4">
+                              <Text tag="h1" textSize="display1">
+                                {date}
+                              </Text>
+                            </Col>
+                            <Col size="8">
+                              <Text tag="h1" textSize="display1">
+                                {name}
+                              </Text>
+                            </Col>
+                          </Row>
+                        );
+                      }
+                    })}
+                  </Div>
+                </Div>
+                }
+              </Div>
+            </motion.div>
+            <motion.div style={{
+              marginTop: "200px",
+              verticalAlign: "bottom",
+              width: "5vw",
+              backgroundColor: "rgb(253, 232, 225)"
+            }} animate={dramaControls}>
+              <Div cursor="pointer" onClick={() => setCurrentProgramme(4)} h="100%" align="center"
+                   flexDir="column" d="flex">
+                {active != 4 &&
+                <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
+                      style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
+                  Radio Drama
+                </Text>
+                }
+                {active == 4 &&
+                <Div>
+                  <Text tag="h1" textSize="subheader" textWeight="400" p={{ t: "10px" }}>
+                    Rewind
+                  </Text>
+                  <Text tag="h1" textSize="6vw" p={{ t: "10px", b: "30px" }}>
+                    Radio Drama
+                  </Text>
+                  <Div>
+                    <Row p={{ b: "10px" }} style={{ borderBottom: "1px solid" }}>
+                      <Col size="4">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Date
+                        </Text>
+                      </Col>
+                      <Col size="8">
+                        <Text tag="h1" textWeight="400" textSize="paragraph" p={{ t: "10px" }}>
+                          Programme Name
+                        </Text>
+                      </Col>
+                    </Row>
+                    {programmes.map(jong => {
+                      // tests.map(test => {});
+                      const {
+                        node,
+                        node: { name, date, type, year }
                       } = jong;
 
                       if (type === "Radio Drama") {
                         return (
-                          <Row p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
+                          <Row onClick={() => nav(year, type)} p={{ y: "25px" }} style={{ borderBottom: "1px solid" }}>
                             <Col size="4">
                               <Text tag="h1" textSize="display1">
                                 {date}
