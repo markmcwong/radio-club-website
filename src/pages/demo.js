@@ -5,7 +5,6 @@ import { Button, Col, Div, Icon, Image, Row, Text, ThemeProvider } from "atomize
 import newsTeamImage from "../images/jpg/20gb.jpg";
 import { motion } from "framer-motion";
 
-require("core-js/fn/array/find");
 
 const TestPage = props => {
   const Name = "test";

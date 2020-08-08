@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { graphq, navigate, Link } from "gatsby";
 
-require("core-js/fn/array/find");
 
 // import TestPage from "../components/demo"
 import { Dropdown, Col, Container, Div, Text, Row, Image, Button, Icon } from "atomize";

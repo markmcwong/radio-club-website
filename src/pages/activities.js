@@ -3,7 +3,6 @@ import React, { useRef, useState } from "react";
 import { graphql } from "gatsby";
 import ReactDOM from "react-dom";
 
-require("core-js/fn/array/find");
 
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
 import { Col, Image, Row, Text, Div } from "atomize";
