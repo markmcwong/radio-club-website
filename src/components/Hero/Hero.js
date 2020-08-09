@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import CarouselNews from "./CarouselNews";
+import { Div, Row } from "atomize";
 import { FaArrowDown } from "react-icons/fa/";
 
 const Hero = props => {
   const { scrollToContent, backgrounds, theme, site } = props;
   return (
     <React.Fragment>
-      <section className="hero">
+      <Div minH={{ xl:"100vh", lg: "100vh" }} h="auto">
         <CarouselNews sites={site} />
         {/*<button onClick={scrollToContent} aria-label="scroll">
           <FaArrowDown />
         </button>*/}
-      </section>
+      </Div>
 
       {/* --- STYLES --- */}
       <style jsx>{`
@@ -25,8 +26,6 @@ const Hero = props => {
           display: flex;
           flex-flow: column nowrap;
           justify-content: center;
-          min-height: 100vh;
-          height: 100px;
         }
 
         h1 {

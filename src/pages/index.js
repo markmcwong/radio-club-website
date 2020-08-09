@@ -75,7 +75,7 @@ class IndexPage extends React.Component {
             />
           )}
         </ThemeContext.Consumer>
-        <Row h="100vh" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+        <Row minH={{ xl:"100vh", lg: "100vh" }} h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
           {/*  <Col size="4">*/}
           {/*    <Article theme={theme}>*/}
           {/*  <header>*/}
@@ -187,7 +187,12 @@ class IndexPage extends React.Component {
                   data-sal-easing="ease"
                   textWeight="400"
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod mi quis metus rhoncus, non molestie turpis sollicitudin. Sed tincidunt faucibus quam non porta. Nullam aliquet ipsum ac augue malesuada pellentesque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer consectetur tristique fringilla.
+                  科大校園人民廣播電台致力為各位會員提供高質素與具意義的活動。通過各種迎新活動幫助新入學的新生熟悉科大環境，融入科大生活，同時藉著各種電台活動如參觀香港電台、使用電台房的錄音設備經營電台節目，令鮮少有機會接觸傳媒行業的科大學生更了解香港傳媒業的現況。欲知更多活動詳情，歡迎按下方按鈕瞭解更多。科大電台歡迎你！
+                  各種迎新活動幫助新入學的新生熟悉科大環境，融入科大生活。
+                  <br/>
+                  <br/>
+                  We are dedicated to providing meaningful and high-quality activities to our members and students of HKUST.  Our orientation activities provide assistance to the freshmen to understand more about the university and integrate into the HKUST community. By participating in our activities like RTHK tour and using the equipment in the radio room to host their own programs, students of HKUST can have a chance to understand the industry of media which they seldom have.
+                  To get more information about us, please click the below button. Welcome to join us!
                 </Text>
                 <Text
                   textAlign="left"

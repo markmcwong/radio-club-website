@@ -7,7 +7,7 @@ import ReactDOM from "react-dom";
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
 import { Col, Image, Row, Text, Div } from "atomize";
 import placeholder from "../images/png/placeholder.png";
-import newsTeamImage from "../images/jpg/20gb.jpg";
+import activityImg from "../images/jpg/activity.png";
 import { motion, useAnimation } from "framer-motion";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 
@@ -24,7 +24,7 @@ const ActivitiesPage = props => {
   const opacityControls = useAnimation();
   const overlayControls = useAnimation();
   const [filter, setFilter] = useState("");
-  const [activityFilter, setActivityFilter] = useState("General Broadcasting");
+  const [activityFilter, setActivityFilter] = useState("");
   const reverse = () => {
     console.log("reversing")
     opacityControls.start({
@@ -101,12 +101,14 @@ const ActivitiesPage = props => {
               This year's events & activities →
             </Text>
             <Div
-              bgImg={placeholder}
+              bgImg={activityImg}
               bgSize="cover"
               bgPos="center"
               h="30vh"
               w="100%"
-              shadow="3"
+              shadow="4"
+              border="4px solid"
+              borderColor="white"
             />
           </motion.div>
         </Col>
@@ -162,36 +164,38 @@ const ActivitiesPage = props => {
                   transition: { duration: 0.5, delay: 0.5, times: [0, 1] }
                 });
               };
-              return (
-                <Div ref={posRef} w="25%" p={{ y: "20px", r: "20px" }} d="inline-block" h="100%"
-                     style={{ cursor: "pointer" }} onClick={(e) => actions(e)}>
-                  <Text tag="h4" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
-                    {name}
-                  </Text>
-                  {
-                    files[i] && files[i].node.base.startsWith("ex-") &&
-                    <Div
-                      bgImg={files[i].node.childImageSharp.fluid.src}
-                      bgSize="cover"
-                      bgPos="center"
-                      w="20vw"
-                      h="80%"
-                      shadow="4"
-                      onClick={() =>
-                        setFilter(year)}
-                    />
-                  }
-                  {/*<Div*/}
-                  {/*  shadow="3"*/}
-                  {/*  bgImg={placeholder}*/}
-                  {/*  bgSize="cover"*/}
-                  {/*  bgPos="center"*/}
-                  {/*  w="20vw"*/}
-                  {/*  h="80%"*/}
-                  {/*  shadow="3"*/}
-                  {/*/>*/}
-                </Div>
-              );
+              if(i !== jongs.length-1) {
+                return (
+                  <Div ref={posRef} w="25%" p={{ y: "20px", r: "20px" }} d="inline-block" h="100%"
+                       style={{ cursor: "pointer" }} onClick={(e) => actions(e)}>
+                    <Text tag="h4" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
+                      {name}
+                    </Text>
+                    {
+                      files[i] && files[i].node.base.startsWith("ex-") &&
+                      <Div
+                        bgImg={files[i].node.childImageSharp.fluid.src}
+                        bgSize="cover"
+                        bgPos="center"
+                        w="20vw"
+                        h="80%"
+                        shadow="4"
+                        onClick={() =>
+                          setFilter(year)}
+                      />
+                    }
+                    {/*<Div*/}
+                    {/*  shadow="3"*/}
+                    {/*  bgImg={placeholder}*/}
+                    {/*  bgSize="cover"*/}
+                    {/*  bgPos="center"*/}
+                    {/*  w="20vw"*/}
+                    {/*  h="80%"*/}
+                    {/*  shadow="3"*/}
+                    {/*/>*/}
+                  </Div>
+                );
+              }
             })}
           </Div>
         </motion.div>
@@ -206,8 +210,10 @@ const ActivitiesPage = props => {
             </Div>
             <Col size="4" p="2.5%" d="flex" align="center">
               <Image shadow="4" src={files.filter(function(img) {
-                return img.node.base.startsWith(filter)
-                  && img.node.base.endsWith(activityFilter + ".jpg");
+                console.log(activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title)
+                return img.node.base.startsWith(filter) && img.node.base.endsWith(
+                    (activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title)
+                + ".jpg")
               })[0].node.childImageSharp.fluid.src} style={{ zIndex: 2 }}/>
             </Col>
             <Col shadow="5" style={{
@@ -216,6 +222,7 @@ const ActivitiesPage = props => {
               maxWidth: "80%",
               flex: "0 1 80%"
             }} d="flex" align="center" flexDir="row" size="8" bg="white">
+              {/*{activities.find(element => filter == element.node.year && activityFilter == element.node.title )}*/}
               {activities.map((activity, i) => {
                 const {
                   node,
@@ -224,14 +231,16 @@ const ActivitiesPage = props => {
                     year,
                     subtitle1,
                     subtitle2,
+                    subtitle3,
                     content1,
-                    content2
+                    content2,
+                    content3
                   }
                 } = activity;
-                console.log(filter);
-                if (year == filter && activityFilter == title) {
+
+                if (year == filter && title == activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title) {
                   return (
-                    <Col h="100%" size="7" d="flex" align="center" p={{ t: "2.5%", l: { xl: "3vw", lg: "2vw" } }}>
+                    <Col h="100%" size="7" d="flex" align="center" p={{ y: "3%", l: { xl: "3vw", lg: "2vw" } }}>
                       <div>
                         <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
                           {title}
@@ -239,14 +248,20 @@ const ActivitiesPage = props => {
                         <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
                           {subtitle1}
                         </Text>
-                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
+                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
                           {content1}
                         </Text>
                         <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
                           {subtitle2}
                         </Text>
-                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }}>
+                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
                           {content2}
+                        </Text>
+                        <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
+                          {subtitle3}
+                        </Text>
+                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
+                          {content3}
                         </Text>
                       </div>
                     </Col>
@@ -266,12 +281,12 @@ const ActivitiesPage = props => {
                   } = activity;
 
                   let filteredImg = files.filter(function(img) {
-                    console.log(img.node.base);
+                    // console.log(img.node.base);
                     return img.node.base.startsWith(filter)
                       && img.node.base.endsWith(title + ".jpg");
                   })[0];
-                  console.log(filteredImg);
-                  console.log(filter, activityFilter);
+                  // console.log(filteredImg);
+                  // console.log(filter, activityFilter);
                   if (year == filter) {
                     return (
                       <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }} cursor="pointer" onClick={() =>
@@ -340,8 +355,10 @@ export const query = graphql`
           year
           subtitle1
           subtitle2
+          subtitle3
           content1
           content2
+          content3
           jong
         }
       }
@@ -350,7 +367,7 @@ export const query = graphql`
       sort: {fields: base, order: DESC},
       filter: {
         extension: { regex: "/(jpg)|(png)|(jpeg)/" }
-        relativeDirectory: { eq: "activities/jong" }
+        relativeDirectory: { regex: "/activities/jong/[0-9]+/"}
       }
     ) {
       edges {

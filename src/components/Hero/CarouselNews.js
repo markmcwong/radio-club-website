@@ -36,7 +36,6 @@ const CarouselNews = props => {
       zIndex: 0,
       x: 0,
       opacity: 1,
-      height: "100vh",
       width: "100vw"
     },
     exit: (direction) => {
@@ -98,27 +97,29 @@ const CarouselNews = props => {
   const textControls = useAnimation();
   return (
     <React.Fragment>
-      <motion.img
-        src={images[imageIndex]}
-        variants={variants}
-        animate="center"
-        exit="exit"
-        transition={{
-          x: { type: "spring", stiffness: 300, damping: 200 },
-          opacity: { duration: 0.2 }
-        }}
-        style={{ height: "100vh",
-          width: "100vw", backgroundSize: "cover", objectFit: "cover", filter: "blur(4px)"}}
-      />
-      <Div pos="absolute" left="10vw" top="15vh">
+      <Div h={{xs:"85vh", md:"60vh", lg:"100vh", xl:"100vh"}}>
+        <motion.img
+          src={images[imageIndex]}
+          variants={variants}
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 200 },
+            opacity: { duration: 0.2 }
+          }}
+          style={{ height: "100%",
+            width: "100vw", backgroundSize: "cover", objectFit: "cover"}}
+        />
+      </Div>
+
+      <Div pos="absolute" left="10vw" top={{ xs:"8vh", lg: "15vh" }}>
         <motion.div animate={controls}>
-          <Text textColor="white" tag="h1" textSize="7vw" p={{ t: "10px" }}>
+          <Text textColor="white" tag="h1" textSize={{ xs:"10vw", lg: "7vw" }} p={{ t: "10px" }}>
             {text[textIndex]}
           </Text>
         </motion.div>
       </Div>
-      <Div w="60vw" pos="absolute" bottom="0" right="0">
-        {/*https://github.com/react-component/progress*/}
+      <Div w={{ xs:"70vw", lg:"60vw" }} pos="absolute" bottom={{xs:"15vh", md:"40vh", lg:"0"}} right="0">
         <motion.div animate={lineControls}>
           <Line
             strokeLinecap="square"
@@ -131,7 +132,7 @@ const CarouselNews = props => {
         </motion.div>
         <Div
           className="carouselNews"
-          p={{ t: { lg: "2rem", xl: "2rem" }, x: { lg: "6rem", xl: "8rem" } }}
+          p={{ y: { xs: "1.5rem", xl: "2rem" }, x: { xs:"2rem" , lg: "6rem", xl: "8rem" } }}
           bg="warning300"
         >
           <motion.div animate={textControls}>
@@ -148,11 +149,11 @@ const CarouselNews = props => {
             } = site;
             return <div>
               <Text textWeight="400" textColor="black500" p={{ b: { lg: "1rem", xl: "1rem" } }} textSize="caption" tag="h1">{title}</Text>
-              <Text tag="p" w={{ lg: "35vw", xl: "35vw" }} p={{ b: { lg: "1rem", xl: "1rem" } }}>
+              <Text textSize={{ xs:"body", lg:"paragraph" }} tag="p" w={{ lg: "35vw", xl: "35vw" }} p={{ b: { xs: "1rem", xl: "1rem" } }}>
                 {description}
               </Text>
               <Div p={{ t: { lg: "1rem", xl: "1rem" }, b: { lg: "2em", xl: "2rem" } }}>
-                <Text tag="p" textSize="title" onClick={() => location.href = "#"}>
+                <Text tag="p" textSize={{ xs:"subheader", lg:"title" }} onClick={() => location.href = "#"}>
                   {action}
                 </Text>
               </Div>

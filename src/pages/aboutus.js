@@ -11,6 +11,8 @@ import { Icon, Col, Container, Button, Div, Text, Row, Image, SideDrawer } from 
 import AnimatedText from "../components/Page/animatedText";
 import placeholder from "../images/png/placeholder.png";
 import newsTeamImage from "../images/jpg/news_reporting_team.jpeg";
+import aboutUsImage from "../images/jpg/aboutUs.jpg";
+
 import AnimatedImage from "../components/Page/animatedImage";
 import { motion, useAnimation } from "framer-motion";
 
@@ -111,7 +113,7 @@ const CategoryPage = props => {
               isOpen={showSideDrawer}
               onClose={() => setSideDrawer(false) }
             />
-            <Row h="100vh" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+            <Row minH="100vh" h="auto" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
               <Col size="7" p={{ t: "2.5%" }}>
                 <Text tag="h6" textSize="subheader">
                   香港科技大學學生會科大校園人民廣播電台
@@ -133,11 +135,11 @@ const CategoryPage = props => {
                 </Text>
               </Col>
               <Col size="5" d="flex" align="center">
-                <Div>
-                  <Div bg="gray200">
+                <Div w="100%" d="flex" align="center" flexDir="column">
+                  <Div bg="gray200" h="100%" w="100%">
                     <motion.div whileHover={{x: 20, y: 20,
                       transition: { duration: 0.25 }}} animate={{ opacity: [0, 1] }} transition={{ delay: 0.5, duration: 1.5 }} >
-                      <Image height="auto" src={placeholder} border="1px dashed"/>
+                      <Div h="60vh" bgPos="center" bgSize="cover" bgImg={aboutUsImage} border="1px dashed"/>
                     </motion.div>
                   </Div>
                   <Text onClick={()=> setSideDrawer(true)}tag="p" textSize="title" p={{ t: "5%" }}>
@@ -146,7 +148,7 @@ const CategoryPage = props => {
                 </Div>
               </Col>
             </Row>
-            <Row h="100vh" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
+            <Row minH="100vh" h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
               <Col size="5" d="flex" align="center">
                 <Image height="100%" width="auto" src={placeholder} border="1px dashed"/>
               </Col>
@@ -190,7 +192,7 @@ const CategoryPage = props => {
                 </div>
               </Col>
             </Row>
-            <Row h="100vh" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+            <Row minH="100vh" h="auto" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
               <Col d="flex" align="center" size="7">
                 <div>
                   <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>

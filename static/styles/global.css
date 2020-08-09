@@ -17,3 +17,7 @@
 .vertical-timeline-element-content, .vertical-timeline-element-content p {
   font-weight: 300 !important;
 }
+* {
+  box-sizing: border-box;
+}
+html,body{margin:0 !important;padding:0 !important; overflow-x: hidden;}

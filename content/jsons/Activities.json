@@ -12,7 +12,7 @@
   {
     "title": "Live Broadcasting",
     "subtitle1": "Date & Time",
-    "content1": "30th April 2019 14:00 - 15:00",
+    "content1": "30th April 2019, 14:00 - 15:00",
     "subtitle2": "Venue",
     "content2": "Common 1+2",
     "year": 2019,
@@ -30,9 +30,51 @@
     "html": ""
   },
   {
+    "title": "Orientation Night",
+    "subtitle1": "Date & Time",
+    "content1": "11th October 2019, 19:00 - 22:30",
+    "subtitle2": "Venue",
+    "content2": "Common Room 1+2",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
+  },
+  {
+    "title": "New Star Hit",
+    "subtitle1": "Date & Time",
+    "content1": "8th October 2019 - 7th November 2019, 18:45 - 22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
+  },
+  {
+    "title": "News Reporting Team",
+    "subtitle1": "",
+    "content1": "本台作為香港科技大學的傳播媒體之一，我們責無旁貸，為各位科大學生報導現時香港的狀況。因此，本台決定成立突發新聞採訪小組，為任何大型事件作出現場報導。\n\n小組現已有二十名成員，若有本台會員有興趣參與小組之工作(前線報導、直播、撰文)，可以參考以下聯繫方式，跟我們聯絡。",
+    "subtitle2": "Contacts:",
+    "content2": "President Coco 90864384\nInternal Vice-President Sam 69237688\nExternal Vice-President Sunny 63548052\n\nEmail : su_radio@connect.ust.hk\nInstagram Direct Message : pcr_hkustsu",
+    "subtitle3": "Links:",
+    "content3": "Facebook: https://www.facebook.com/hkustradionews/\nInstagram: https://www.instagram.com/hkustradionews/",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
+  },
+  {
+    "title": "Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "18th October 2019, 19:30-21:30",
+    "subtitle2": "Venue",
+    "content2": "Room 1410",
+    "year": 2019,
+    "jong": "2019 - Rhapsody",
+    "html": ""
+  },
+  {
     "title": "General Broadcasting",
     "subtitle1": "Date & Time",
-    "content1": "19th March 2019 - 2rd May 2019, 19:30 - 22:30",
+    "content1": "20th March 2018 - 26th April 2018, 19:30 - 22:30",
     "subtitle2": "Venue",
     "content2": "Room LG5208 Activity Room",
     "year": 2018,
@@ -40,13 +82,503 @@
     "html": ""
   },
   {
+    "title": "The 12th Inauguration Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "16th April 2018, 19:30-22:00",
+    "subtitle2": "Venue",
+    "content2": "LT-J",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Live Broadcasting 1",
+    "subtitle1": "Date & Time",
+    "content1": "24th April 2018, 12:45-14:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Ocamp Group Leader Recruitment",
+    "subtitle1": "Date & Time",
+    "content1": "18th April 2018 - 25th April 2018",
+    "subtitle2": "Venue",
+    "content2": "LG5 Counter",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
     "title": "Orientation Camp",
     "subtitle1": "Date & Time",
-    "content1": "12th August 2019 - 14th August 2019",
+    "content1": "13th August 2018 - 15th August 2018",
     "subtitle2": "Venue",
     "content2": "HKUST",
     "year": 2018,
     "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Orientation Night",
+    "subtitle1": "Date & Time",
+    "content1": "26th September 2018, 19:00 - 23:00",
+    "subtitle2": "Venue",
+    "content2": "Common Room 1+2",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "New Star Hit",
+    "subtitle1": "Date & Time",
+    "content1": "9th October 2018 - 22nd November 2018, 19:30-22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Live Broadcasting 2",
+    "subtitle1": "Date & Time",
+    "content1": "25th October 2018, 12:45-14:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "Radio Friday",
+    "subtitle1": "Date & Time",
+    "content1": "16th November 2018 - 30th November 2018, 19:00-22:00",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "First Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "19th November 2018, 19:30-21:00 & 26th November 2018, 19:30-21:00",
+    "subtitle2": "Venue",
+    "content2": "Room 2406 & Conference Room",
+    "year": 2018,
+    "jong": "2018 - Rambled",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "14th March 2017 - 4th May 2017, 19:30 - 22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "Script Writing Competition",
+    "subtitle1": "Date & Time",
+    "content1": "5th April 2017 - 19th April 2017, 10:00 - 18:00",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "Ocamp Group Leader Recruitment",
+    "subtitle1": "Date & Time",
+    "content1": "24th April 2017 - 28th April 2017",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "12th August 2017 - 14th August 2017",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "Orientation Night",
+    "subtitle1": "Date & Time",
+    "content1": "25th September 2017, 19:00 - 22:00",
+    "subtitle2": "Venue",
+    "content2": "Common Room 5+6",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "New Star Hit",
+    "subtitle1": "Date & Time",
+    "content1": "3rd October 2017 - 17th November 2017, 19:30-22:30",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "Radio Friday",
+    "subtitle1": "Date & Time",
+    "content1": "10th November 2017 - 24th November 2017, 19:00-22:00",
+    "subtitle2": "Venue",
+    "content2": "HKUST, Clear Water Bay First Beach",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "First Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "13th November 2017, 19:00-21:00",
+    "subtitle2": "Venue",
+    "content2": "Room 2302",
+    "year": 2017,
+    "jong": "2017 - Skywalker",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "15th March 2016 - 5th May 2016, 20:00 - 23:00",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "The 11th Inauguration Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "15th April 2016, 19:00 - 22:00",
+    "subtitle2": "Venue",
+    "content2": "LT-C",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "Ocamp Group Leader Recruitment",
+    "subtitle1": "Date & Time",
+    "content1": "21st April 2016 - 25th April 2016, 10:00 - 18:00",
+    "subtitle2": "Venue",
+    "content2": "LG5 Counter",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "13th October 2016 - 15th October 2016",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "Orientation Week",
+    "subtitle1": "Date & Time",
+    "content1": "2nd September 2016 - 20th September 2016",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "Orientation Night",
+    "subtitle1": "Date & Time",
+    "content1": "19th October 2016, 19:00-22:00",
+    "subtitle2": "Venue",
+    "content2": "Common 5+6",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "Radio Friday",
+    "subtitle1": "Date & Time",
+    "content1": "11th November 2016 - 25th November 2016, 19:00-22:00",
+    "subtitle2": "Venue",
+    "content2": "Common 5+6",
+    "year": 2016,
+    "jong": "2016 - Radioactive",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "Starting from 23rd March 2015, 20:00 - 23:00",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2015,
+    "jong": "2015 - Radiant",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "17th March 2014 - 8th May 2014, 20:00 - 23:00",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Ocamp Group Leader Recruitment",
+    "subtitle1": "Date & Time",
+    "content1": "17th March 2014 - 19th March 2014, 10:00 - 18:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "The 10th Inauguration Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "10th April 2014, 20:00 - 22:00",
+    "subtitle2": "Venue",
+    "content2": "LT-C",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Live Broadcasting 1",
+    "subtitle1": "Date & Time",
+    "content1": "29th April 2014, 12:45 - 14:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "21st August 2014 - 22nd August 2014",
+    "subtitle2": "Venue",
+    "content2": "HKUST",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Orientation Week",
+    "subtitle1": "Date & Time",
+    "content1": "2nd Septenber 2014 - 12th September 2014",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "World College Radio Day",
+    "subtitle1": "Date & Time",
+    "content1": "3rd October 2014",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Live Broadcasting 2",
+    "subtitle1": "Date & Time",
+    "content1": "13th November 2014, 12:30 - 13:30",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "28th November 2014, 19:00 - 21:00",
+    "subtitle2": "Venue",
+    "content2": "Room 2503",
+    "year": 2014,
+    "jong": "2014 - Razzle",
+    "html": ""
+  },
+  {
+    "title": "The 10th Inauguration Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "8th April, 2013, 20:00 - 21:30",
+    "subtitle2": "Venue",
+    "content2": "LT-F",
+    "year": 2013,
+    "jong": "2013 - Rapture",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "26th March 2013 - 16th May 2013, 20:00 - 00:00",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2013,
+    "jong": "2013 - Rapture",
+    "html": ""
+  },
+  {
+    "title": "Live Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "3rd May 2013, 12:30 - 14:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2013,
+    "jong": "2013 - Rapture",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "16th -17th August, 2013",
+    "subtitle2": "Venue",
+    "content2": "HKUST Campus & Off-campus activities",
+    "year": 2013,
+    "jong": "2013 - Rapture",
+    "html": ""
+  },
+  {
+    "title": "Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "29th November, 2013, 19:30",
+    "subtitle2": "Venue",
+    "content2": "Room 2302",
+    "year": 2013,
+    "jong": "2013 - Rapture",
+    "html": ""
+  },
+  {
+    "title": "New Star Hit",
+    "subtitle1": "Date & Time",
+    "content1": "October 2012 - November 2012",
+    "subtitle2": "Venue",
+    "content2": "Room LG5208 Activity Room",
+    "year": 2012,
+    "jong": "2012 - Rally",
+    "html": ""
+  },
+  {
+    "title": "Inauguration Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "11th April, 2011, 19:30 - 21:00",
+    "subtitle2": "Venue",
+    "content2": "LT-J",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting",
+    "subtitle1": "Date & Time",
+    "content1": "22nd March 2011 - 5th May 2011, 20:00 - 00:00",
+    "subtitle2": "Venue",
+    "content2": "Room 4034",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "General Broadcasting - Radio Fever",
+    "subtitle1": "Date & Time",
+    "content1": "During the period of General Broadcasting",
+    "subtitle2": "Venue",
+    "content2": "Room 4034",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Orientation Camp",
+    "subtitle1": "Date & Time",
+    "content1": "6th August 2011 - 7th August 2011",
+    "subtitle2": "Venue",
+    "content2": "HKUST Campus & off-campus activity",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Orientation Week",
+    "subtitle1": "Date & Time",
+    "content1": "5th September 2011 - 16th September 2011, 10:00 - 18:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Orientation Night",
+    "subtitle1": "Date & Time",
+    "content1": "22nd September 2011, 18:00 - 22:00",
+    "subtitle2": "Venue",
+    "content2": "Seafront BBQ site",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Kick Off Ceremony",
+    "subtitle1": "Date & Time",
+    "content1": "31st September 2011, 12:45 - 14:00",
+    "subtitle2": "Venue",
+    "content2": "Atrium",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "New Star Hit",
+    "subtitle1": "Date & Time",
+    "content1": "11th October 2011 - 1st December 2011",
+    "subtitle2": "Venue",
+    "content2": "Room 4034",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Information Session",
+    "subtitle1": "Date & Time",
+    "content1": "14th November 2011, 19:00",
+    "subtitle2": "Venue",
+    "content2": "LT-K",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
+    "html": ""
+  },
+  {
+    "title": "Archive Project",
+    "subtitle1": "Date & Time",
+    "content1": "October 2011 - December 2011",
+    "subtitle2": "Venue",
+    "content2": "",
+    "year": 2011,
+    "jong": "2011 - Ratoon",
     "html": ""
   }
 ]
