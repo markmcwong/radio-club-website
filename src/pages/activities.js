@@ -61,8 +61,8 @@ const ActivitiesPage = props => {
           bottom="5vh"
         />
       </motion.div>
-      <Row h="40vh" bg="warning500"
-           p={{ t: "5%", b: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+      <Row h={{xs:"60vh", lg: "40vh" }} bg="warning500"
+           p={{ t: "5%", b: "5%", l: {xs: "7.5vw", xl: "7.5vw", lg: "5vw" }, r: { xs: "7.5vw", xl: "7.5vw", lg: "5vw" } }}>
         {/*  <Col size="4">*/}
         {/*    <Article theme={theme}>*/}
         {/*  <header>*/}
@@ -88,14 +88,14 @@ const ActivitiesPage = props => {
         {/*  `}</style>*/}
         {/*</Article>*/}
         {/*  </Col>*/}
-        <Col size="7">
+        <Col size={{xs:"12", lg:"7"}} d="flex" >
           <motion.div animate={opacityControls}>
             <Text tag="h1" textSize="6vw" p={{ t: "10px" }}>
               Interested in our Events & Activities?
             </Text>
           </motion.div>
         </Col>
-        <Col p={{ t: "5vh" }} size="5">
+        <Col p={{ t: { xs:"0vh", lg:"5vh" } }} size={{xs:"12", lg:"5"}}>
           <motion.div animate={opacityControls}>
             <Text tag="h1" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
               This year's events & activities →

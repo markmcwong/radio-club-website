@@ -7,16 +7,16 @@ import { motion } from "framer-motion";
 
 const TestPage = props => {
   const Name = "test";
-  if (props.location.state) {
-  }
   function getState() {
     return {
-      dateFilter: props.location.dateFilter, nameFilter: props.location.nameFilter, typeFilter: props.location.typeFilter
+      dateFilter: props.location.state.dateFilter, nameFilter: props.location.state.nameFilter, typeFilter: props.location.state.typeFilter
     }
   }
   let dateFilter, typeFilter, nameFilter;
+
   if(props.location.state){
-    ({dateFilter, typeFilter, nameFilter}=  getState());
+    console.log(props.location);
+    ({dateFilter, typeFilter, nameFilter} =  getState());
   }
   let {
     data: {
