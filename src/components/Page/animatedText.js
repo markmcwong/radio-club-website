@@ -62,7 +62,7 @@ const AnimatedText = props => {
                       variants={variants} style={{
             display: "inline-block", position: "relative", overflow: "hidden"
           }}>
-            <div style={{ width: revealWidth, borderBottom: "5px solid white" }}>
+            <div style={{ width: revealWidth, borderBottom: "0.2rem solid white" }}>
               <a style={{ color: "transparent" }}>Cooperation</a>
             </div>
           </motion.div>

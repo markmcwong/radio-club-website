@@ -113,18 +113,20 @@ const CategoryPage = props => {
               isOpen={showSideDrawer}
               onClose={() => setSideDrawer(false) }
             />
-            <Row minH="100vh" h="auto" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
-              <Col size="7" p={{ t: "2.5%" }}>
-                <Text tag="h6" textSize="subheader">
+            <Row h="auto" p={{ b: "5%", t: "5%", l: { xs:"7vw", xl: "7.5vw", lg: "5vw" }, r: {  xs:"7vw", xl: "7.5vw", lg: "5vw" } }}>
+              <Col size={{xs:"12", lg:"7"}} >
+                <Text tag="h6" textSize={{xs:"4vw", md:"3vw", lg:"1.5vw"}}>
                   香港科技大學學生會科大校園人民廣播電台
                 </Text>
-                <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>
-                  People's <br/> Campus Radio <br/>  HKUSTSU
+                <Text tag="h1" textSize={{xs:"12vw", lg:"7vw"}} p={{ t: "10px" }}>
+                  People's Campus Radio HKUSTSU
                 </Text>
-                <Text tag="p" textSize="caption" textDecor="underline">
+                <Text tag="p" textSize={{xs:"caption", sm:"body", md:"paragraph", lg:"subheader"}} p={{
+                  t: { xs: '1rem', md: '1rem' },
+                }} textDecor="underline">
                   Affiliated to the Students' Union of Hong Kong University of Science and Technology
                 </Text>
-                <Text tag="p" textSize="body" p={{ t: "5%", r: "10vw" }}>
+                <Text tag="p" textWeight="300" textSize={{xs:"body", sm:"paragraph", md:"subheader", lg:"subheader", xl:"title"}} p={{ t: "2.5vh", r:{xs:"2vw", lg:"7.5vw"} }}>
                   People's Campus Radio, HKUSTSU was established in 1997, which serves the HKUST community by providing
                   high quality broadcasting service via Internet with the aim of to become one of the major
                   communication channels among the Members of HKUST community.
@@ -134,45 +136,45 @@ const CategoryPage = props => {
                   affairs and to provide HKUST community oriented information and entertainment services.
                 </Text>
               </Col>
-              <Col size="5" d="flex" align="center">
-                <Div w="100%" d="flex" align="center" flexDir="column">
+              <Col size={{xs:"12", lg:"5"}} d="flex" align="center">
+                <Div w="100%" d="flex" align="center" flexDir="column" p={{ y: "5%" }}>
                   <Div bg="gray200" h="100%" w="100%">
                     <motion.div whileHover={{x: 20, y: 20,
                       transition: { duration: 0.25 }}} animate={{ opacity: [0, 1] }} transition={{ delay: 0.5, duration: 1.5 }} >
-                      <Div h="60vh" bgPos="center" bgSize="cover" bgImg={aboutUsImage} border="1px dashed"/>
+                      <Div h={{xs:"35vh", lg:"60vh"}} bgPos="center" bgSize="cover" bgImg={aboutUsImage} border="1px dashed"/>
                     </motion.div>
                   </Div>
-                  <Text onClick={()=> setSideDrawer(true)}tag="p" textSize="title" p={{ t: "5%" }}>
+                  <Text textWeight="300" onClick={()=> setSideDrawer(true)}tag="p" textSize="title" p={{ t: "5%" }}>
                     <a style={{ color: "black" }} href="#">Know more about each of our previous cabinets →</a>
                   </Text>
                 </Div>
               </Col>
             </Row>
-            <Row minH="100vh" h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
-              <Col size="5" d="flex" align="center">
-                <Image height="100%" width="auto" src={placeholder} border="1px dashed"/>
+            <Row h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
+              <Col size={{xs:"12", lg:"5"}}  d="flex" align="center">
+                <Image height="auto%" p={{xs:"5%"}} width="auto" src={placeholder}/>
               </Col>
-              <Col d="flex" align="center" size="7" p={{l: { xl: "7.5vw", lg: "5vw" }}}>
+              <Col d="flex" align="center" size={{xs:"12", lg:"7"}}  p={{l: { xs:"7.5vw", xl: "7.5vw", lg: "5vw" }}}>
                 <div>
-                <Text tag="h1" textSize="5vw" textColor="warning200">
+                <Text tag="h1" textSize={{xs:"10vw", lg:"5vw"}} textColor="warning200">
                   <AnimatedText />
                   with other media
                 </Text>
-                <Text tag="p" textSize="subheader" p={{ t: "20px", r: "10vw" }} textColor="warning200">
+                <Text tag="p" textWeight="300" textSize={{xs:"body", sm:"paragraph", md:"subheader", lg:"subheader", xl:"title"}} p={{ t: "20px", r:"5vw" }} textColor="warning200">
                   In 2010, People's Campus Radio, HKUSTSU, RTHK and other university campus radios have started a
                   partner relationship in organizating "Teen Power", a programme for providing university students to
                   recieve formal DJ training and the chance to host a weekly programme at RTHK. In each year, 2 - 5
                   members from People's Campus Radio, HKUSTSU would be selected to take this one-year DJ internship at
                   RTHK.
                 </Text>
-                <Row>
+                <Row p={{ r:"5vw"}} >
                   <Col size="6" data-sal="slide-right"
                        data-sal-delay="100"
                        data-sal-easing="ease">
                     <Text tag="h6" textSize="subheader" p={{ t: "30px" }} textColor="warning200">
                       Interviewed by
                     </Text>
-                    <Text tag="p" textSize="paragraph" p={{ t: "20px" }} textColor="warning200">
+                    <Text tag="p" textWeight="300" textSize={{xs:"caption", sm:"body", md:"paragraph", lg:"subheader"}} style={{lineHeight:"1.75rem"}} p={{ t: "20px" }} textColor="warning200">
                       The Sun Daily<br/>
                       Hi-tech Weekly<br/>PC Home<br/>Singpao<br/>Cult<br/>eZone
                     </Text>
@@ -183,7 +185,7 @@ const CategoryPage = props => {
                     <Text tag="h6" textSize="subheader" p={{ t: "30px" }} textColor="warning200">
                       Co-operated with
                     </Text>
-                    <Text tag="p" textSize="paragraph" p={{ t: "20px" }} textColor="warning200">
+                    <Text tag="p" textWeight="300" style={{lineHeight:"1.75rem"}} textSize={{xs:"caption", sm:"body", md:"paragraph", lg:"subheader"}} p={{ t: "20px", b:{xs:"20px", lg:"20px"}} } textColor="warning200">
                       RTHK<br/>The Campus Radio of Chinese University Hong Kong<br/>PolyU Campus Radio<br/>HKBU
                       CommChannel<br/>Stareastnet.com<br/>36.com
                     </Text>
@@ -192,21 +194,21 @@ const CategoryPage = props => {
                 </div>
               </Col>
             </Row>
-            <Row minH="100vh" h="auto" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
-              <Col d="flex" align="center" size="7">
+            <Row h="auto" p={{  b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+              <Col d="flex" align="center" size={{xs:"12", lg:"7"}} p={{l: { xs:"7.5vw", lg: "0vw" }}}>
                 <div>
-                  <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>
+                  <Text tag="h1" textSize={{xs:"10vw", lg:"7vw"}} p={{ t: "10px", r: {xs:"5vw", lg:"0vw"} }}>
                     Radio News Reporting Team
                   </Text>
-                  <Text tag="p" textSize="title" p={{ t: "5%", r: "10vw" }}>
+                  <Text tag="p" textWeight="300" textSize="title" p={{ t: "5%", r: "7.5vw" }}>
                     As one of the medias in HKUST, it's our civic responsibility to update students on current affairs, and report major events in Hong Kong. That's why we have founded the Radio News Reporting Team.
                   </Text>
-                  <Text tag="h1" textSize="3vw" p={{ t: "5%" }}>
+                  <Text tag="h1" textSize={{xs:"7vw", lg:"3vw"}} p={{ t: "5%", r: "7.5vw" }}>
                     We aim to provide <i>unbiased news</i>, <i>information</i> and <i>share opinions with our fellow students</i>
                   </Text>
                 </div>
               </Col>
-              <Col size="5" d="flex" align="center">
+              <Col size={{xs:"12", lg:"5"}} d="flex" align="center">
                 <AnimatedImage colour="grey" children={img}/>
               </Col>
             </Row>

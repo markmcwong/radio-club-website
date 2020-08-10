@@ -11,6 +11,7 @@ import Item from "../components/Blog/Item";
 import { Div, Text, Container, Col, Row, Image } from "atomize";
 import AnimatedImage from "../components/Page/animatedImage";
 import placeholder from "../images/png/placeholder.png";
+import aboutUsImage from "../images/jpg/aboutUs.jpg";
 
 class IndexPage extends React.Component {
   separator = React.createRef();
@@ -75,43 +76,20 @@ class IndexPage extends React.Component {
             />
           )}
         </ThemeContext.Consumer>
-        <Row minH={{ xl:"100vh", lg: "100vh" }} h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
-          {/*  <Col size="4">*/}
-          {/*    <Article theme={theme}>*/}
-          {/*  <header>*/}
-          {/*    <Headline title="About Us" theme={theme} />*/}
-          {/*  </header>*/}
-          {/*  {categoryList.map(item => (*/}
-          {/*    <section key={item[0]}>*/}
-          {/*      <h2>*/}
-          {/*        <FaTag /> {item[0]}*/}
-          {/*      </h2>*/}
-          {/*      <List edges={item[1]} theme={theme} />*/}
-          {/*    </section>*/}
-          {/*  ))}*/}
-          {/*  /!* --- STYLES --- *!/*/}
-          {/*  <style jsx>{`*/}
-          {/*    h2 {*/}
-          {/*      margin: 0 0 0.5em;*/}
-          {/*    }*/}
-          {/*    h2 :global(svg) {*/}
-          {/*      height: 0.8em;*/}
-          {/*      fill: ${theme.color.brand.primary};*/}
-          {/*    }*/}
-          {/*  `}</style>*/}
-          {/*</Article>*/}
-          {/*  </Col>*/}
-          <Col size="7">
-            <Text tag="h6" textSize="subheader">
+        <Row h="auto" p={{ b: "5%", t: "5%", l: { xs:"7vw", xl: "7.5vw", lg: "5vw" }, r: {  xs:"7vw", xl: "7.5vw", lg: "5vw" } }}>
+          <Col size={{xs:"12", lg:"7"}} >
+            <Text tag="h6" m={{t:{xs:"2rem", md:"0"}}} textSize={{xs:"4vw", md:"3vw", lg:"1.5vw"}}>
               香港科技大學學生會科大校園人民廣播電台
             </Text>
-            <Text tag="h1" textSize="7vw" p={{ t: "10px" }}>
+            <Text tag="h1" textSize={{xs:"12vw", lg:"7vw"}} p={{ t: "10px" }}>
               People's Campus Radio HKUSTSU
             </Text>
-            <Text tag="p" textSize="caption" textDecor="underline">
+            <Text tag="p" textSize={{xs:"caption", sm:"body", md:"paragraph", lg:"subheader"}} p={{
+              t: { xs: '1rem', md: '1rem' },
+            }} textDecor="underline">
               Affiliated to the Students' Union of Hong Kong University of Science and Technology
             </Text>
-            <Text tag="p" textSize="body" p={{ t: "5%", r: "10vw" }}>
+            <Text textWeight="300" tag="p" textSize={{xs:"body", sm:"paragraph", md:"subheader", lg:"subheader", xl:"title"}} p={{ t: "2.5vh", r: "10vw" }}>
               People's Campus Radio, HKUSTSU was established in 1997, which serves the HKUST community by providing
               high quality broadcasting service via Internet with the aim of to become one of the major
               communication channels among the Members of HKUST community.
@@ -120,19 +98,19 @@ class IndexPage extends React.Component {
               The objectives of the campus radio shall be to develop an open discussion culture of social and campus
               affairs and to provide HKUST community oriented information and entertainment services.
             </Text>
-            <Text tag="p" textSize="title" p={{ t: "5%" }}>
-              <a style={{ color: "black" }} href="aboutus">Know more about us &nbsp; > </a>
+            <Text textWeight="300" tag="p" textSize="1.75rem" p={{ y: "5%" }}>
+              <a style={{ color: "black" }} href="aboutus">Know more about us &nbsp; → </a>
             </Text>
           </Col>
-          <Col size="5" d="flex" align="center">
-            <Image height="auto" src={placeholder} border="1px dashed"/>
+          <Col size={{xs:"12", lg:"5"}} d="flex" align="center">
+            <Image height="auto" src={aboutUsImage} />
           </Col>
         </Row>
         <Div bg="gray300" p={{ y: { lg: "5rem", xl: "7rem" }, x: { lg: "3rem", xl: "3rem" } }}>
           {/*<Container d="flex" align="flex-start" flexDir="column">*/}
           <Row>
-            <Col size="7">
-              <Div d="flex" align="centre" flexDir="column">
+            <Col size={{xs:"12", md:"10", lg:"7"}} order={{ xs: 2, lg: 1 }}>
+              <Div p={{xs:"5vw"}} d="flex" align="centre" flexDir="column">
                 <VerticalTimeline className={"test"}>
                   {timetrees.map(timetree => {
                     // tests.map(test => {});
@@ -144,7 +122,7 @@ class IndexPage extends React.Component {
                     return (
                       <VerticalTimelineElement
                         className="vertical-timeline-element--work"
-                        contentStyle={{ background: "#fff", color: "#000", padding: "40px", boxShadow:"2px 2px 5px #ffc659", borderRadius: "5px" }}
+                        contentStyle={{ background: "#fff", color: "#000", padding: "1.5rem", boxShadow:"2px 2px 5px #ffc659", borderRadius: "5px" }}
                         contentArrowStyle={{ borderRight: "15px solid #ffc659" }}
                         date={date}
                         iconStyle={{ background: colour, color: "#fff", border: "white 5px solid", zIndex: 10}}
@@ -163,11 +141,11 @@ class IndexPage extends React.Component {
                 </VerticalTimeline>
               </Div>
             </Col>
-            <Col size="5">
+            <Col size={{xs:"12", lg:"5"}} order={{ xs: 1, lg: 2 }}>
               <Div m={{ l: { xl: "-5vw", lg: "-4vw" } }}>
               <Text
-                p={{ l: { xl: "5vw",lg: "3vw"}, b: { lg: "2rem", xl: "3rem" } }}
-                textSize="5vw"
+                p={{ t:{xs:"2rem", md:"0"}, l: { xs:"7vw", xl: "5vw",lg: "3vw"}, b: { xs:"1rem", lg: "2rem", xl: "3rem" } }}
+                textSize={{xs:"display1", md:"5vw"}}
                 textAlign="left"
                 tag="h1"
                 data-sal="slide-right"
@@ -175,11 +153,11 @@ class IndexPage extends React.Component {
                 data-sal-easing="ease"
               >
                 Latest News
-                <br/> @Radio
+                {window.matchMedia( "(min-width: 800px)" ).matches && <br/>} @Radio
               </Text>
                 <Text
-                  m={{ r: { xl: "0px",lg: "3vw"}, l: { xl: "5vw",lg: "3vw"}, b: { lg: "1rem", xl: "1.5rem" } }}
-                  textSize="subheader"
+                  m={{ r: { xs:"7vw", xl: "0px",lg: "3vw"}, l: { xs:"7vw", xl: "5vw",lg: "3vw"}, b: { lg: "1rem", xl: "1.5rem" } }}
+                  textSize={{xs:"paragraph", md:"subheader"}}
                   textAlign="left"
                   tag="h1"
                   data-sal="slide-right"
@@ -196,7 +174,7 @@ class IndexPage extends React.Component {
                 </Text>
                 <Text
                   textAlign="left"
-                  m={{ r: { xl: "0px",lg: "3vw"}, l: { xl: "5vw",lg: "3vw"}, b: { lg: "1rem", xl: "1.5rem" } }}
+                  m={{ t:{xs:"1rem", md:"0"}, r: { xl: "0px",lg: "3vw"}, l: { xs:"7vw", xl: "5vw",lg: "3vw"}, b: { lg: "1rem", xl: "1.5rem" } }}
                   textSize="heading"
                   tag="p"
                   data-sal="slide-right"
@@ -205,7 +183,7 @@ class IndexPage extends React.Component {
                 >
                   View more →
                 </Text>
-                <AnimatedImage colour="#8B4513" children={img} />
+                {window.matchMedia( "(min-width: 800px)" ).matches && <AnimatedImage colour="#8B4513" children={img} />}
               </Div>
             </Col>
           </Row>
