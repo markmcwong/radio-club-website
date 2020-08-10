@@ -107,7 +107,7 @@ const CarouselNews = props => {
             x: { type: "spring", stiffness: 300, damping: 200 },
             opacity: { duration: 0.2 }
           }}
-          style={{ height: "100%",
+          style={{
             width: "100vw", backgroundSize: "cover", objectFit: "cover"}}
         />
       </Div>

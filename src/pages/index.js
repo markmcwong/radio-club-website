@@ -12,6 +12,7 @@ import { Div, Text, Container, Col, Row, Image } from "atomize";
 import AnimatedImage from "../components/Page/animatedImage";
 import placeholder from "../images/png/placeholder.png";
 import aboutUsImage from "../images/jpg/aboutUs.jpg";
+import window from 'global'
 
 class IndexPage extends React.Component {
   separator = React.createRef();
@@ -153,7 +154,7 @@ class IndexPage extends React.Component {
                 data-sal-easing="ease"
               >
                 Latest News
-                {window.matchMedia( "(min-width: 800px)" ).matches && <br/>} @Radio
+                {window.innerWidth > 800 && <br/>} @Radio
               </Text>
                 <Text
                   m={{ r: { xs:"7vw", xl: "0px",lg: "3vw"}, l: { xs:"7vw", xl: "5vw",lg: "3vw"}, b: { lg: "1rem", xl: "1.5rem" } }}
@@ -183,7 +184,7 @@ class IndexPage extends React.Component {
                 >
                   View more →
                 </Text>
-                {window.matchMedia( "(min-width: 800px)" ).matches && <AnimatedImage colour="#8B4513" children={img} />}
+                {window.innerWidth > 800 && <AnimatedImage colour="#8B4513" children={img} />}
               </Div>
             </Col>
           </Row>

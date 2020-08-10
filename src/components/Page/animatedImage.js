@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import VisibilitySensor from "react-visibility-sensor";
-
+import window from 'global'
 const onStart = () => {
   console.log("Animation completed")
 };
