@@ -144,7 +144,7 @@ const CategoryPage = props => {
                       <Div h={{xs:"35vh", lg:"60vh"}} bgPos="center" bgSize="cover" bgImg={aboutUsImage} border="1px dashed"/>
                     </motion.div>
                   </Div>
-                  <Text textWeight="300" onClick={()=> setSideDrawer(true)}tag="p" textSize="title" p={{ t: "5%" }}>
+                  <Text textWeight="300" onClick={()=> setSideDrawer(true)} tag="p" textSize="title" p={{ t: "5%" }}>
                     <a style={{ color: "black" }} href="#">Know more about each of our previous cabinets →</a>
                   </Text>
                 </Div>

@@ -7,8 +7,10 @@ import { graphq, navigate, Link } from "gatsby";
 import { Dropdown, Col, Container, Div, Text, Row, Image, Button, Icon } from "atomize";
 import placeholder from "../images/png/placeholder.png";
 import { motion, useAnimation } from "framer-motion";
+import window from "global";
 
 const ProgrammesPage = props => {
+  const smallScreen = (window.innerWidth > 800);
   const menuList = (
     <Div>
       {["General Broadcasting", "New Star Hit", "Radio Drama", "Interviews / Special"].map((name, index) => (
@@ -37,35 +39,38 @@ const ProgrammesPage = props => {
   };
   const tabNames = ["Any Programmes", "General Broadcasting", "New Star Hit", "Interviews / Special", "Radio Drama"];
   const setCurrentProgramme = (index) => {
+    if(index < 0) index = 4
+    if(index > 4) index = 0
     const old = active;
     if (old != index) {
       setActive(index);
       gbControls.start({
-        width: (index == 1) ? ["5vw", "60vw"] : "5vw",
+        width: (index == 1) ? ["5vw", (smallScreen) ? "60vw" : "100vw"] : ((smallScreen) ?  "5vw": "0vw"),
         marginTop: (index == 1) ? [50 * (1 - old), "0"] : Math.abs(50 * (1 - index)),
         padding: (index == 1) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
       });
       pastProgrammesControls.start({
-        width: (index == 0) ? ["5vw", "60vw"] : "5vw",
+        width: (index == 0) ? ["5vw", (smallScreen) ? "60vw" : "100vw"] : ((smallScreen) ? "5vw": "0vw"),
         marginTop: [Math.abs(50 * (0 - old)), Math.abs(50 * (0 - index))],
-        marginLeft: (index == 0) ? 0 : ["0vw", "-" + 5 * (index) + "vw"],
-        transition: { duration: 1, times: [0, 1] }
+        marginLeft: (index == 0) ? 0 : ["0vw", "-" + 5 * ((smallScreen) ? index : 0 ) + "vw"],
+        transition: { duration: 1, times: [0, 1] },
+        padding: (index == 0) ? "50px" : "0px"
       });
       nshControls.start({
-        width: (index == 2) ? ["5vw", "60vw"] : "5vw",
+        width: (index == 2) ? ["5vw", (smallScreen) ? "60vw" : "100vw"] : ((smallScreen) ? "5vw": "0vw"),
         marginTop: [Math.abs(50 * (2 - old)), Math.abs(50 * (2 - index))],
         padding: (index == 2) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
       });
       interviewControls.start({
-        width: (index == 3) ? ["5vw", "60vw"] : "5vw",
+        width: (index == 3) ? ["5vw", (smallScreen) ? "60vw" : "100vw"] : ((smallScreen) ? "5vw": "0vw"),
         marginTop: [Math.abs(50 * (3 - old)), Math.abs(50 * (3 - index))],
         padding: (index == 3) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
       });
       dramaControls.start({
-        width: (index == 4) ? ["5vw", "60vw"] : "5vw",
+        width: (index == 4) ? ["5vw", (smallScreen) ? "60vw" : "100vw"] : ((smallScreen) ? "5vw": "0vw"),
         marginTop: [Math.abs(50 * (4 - old)), Math.abs(50 * (4 - index))],
         padding: (index == 4) ? "50px" : "0px",
         transition: { duration: 1, times: [0, 1] }
@@ -86,16 +91,16 @@ const ProgrammesPage = props => {
   return (
     <React.Fragment>
       <Div bg="warning100">
-        <Col p={{ b: "10vh", t: "10vh", x: { xl: "5vw", lg: "2vw" } }}>
+        <Col p={{ b: "10vh", t: "10vh", x: {xl: "5vw", lg: "2vw" } }}>
           {/*<TestPage style={{height: "100vh", width: "100vw", zIndex: 200}}/>*/}
-          <Row>
+          <Row p={{ x:{xs: "10vw", lg: 0}}}>
             <Div cursor="pointer" tag="h1" textSize="6vw" p={{ t: "10px" }}>
               Programmes
             </Div>
           </Row>
 
-          <Row p={{ y: "5vh" }}>
-            <Col size="3">
+          <Row p={{ x:{xs: "10vw", lg: 0}, y: "5vh" }}>
+            <Col size={{ xs: "12", lg: "3" }}>
               <Dropdown style={{
                 background: "transparent",
                 borderRadius: 0,
@@ -112,7 +117,7 @@ const ProgrammesPage = props => {
                 {filter}
               </Dropdown>
             </Col>
-            <Col size="3">
+            <Col size={{ xs: "12", lg: "3" }}>
               <Dropdown style={{
                 background: "transparent",
                 borderRadius: 0,
@@ -129,7 +134,7 @@ const ProgrammesPage = props => {
                 2019-2020
               </Dropdown>
             </Col>
-            <Col d="flex">
+            <Col d="flex" p={{t: { xs: "2rem", lg: "0" }}}>
               <Button
                 h="2.5rem"
                 w="2.5rem"
@@ -139,6 +144,7 @@ const ProgrammesPage = props => {
                 m={{ r: "1rem" }}
                 shadow="2"
                 hoverShadow="4"
+                onClick={()=> setCurrentProgramme(active-1)}
               >
                 <Icon name="LeftArrow" size="20px" color="white"/>
               </Button>
@@ -151,6 +157,7 @@ const ProgrammesPage = props => {
                 m={{ r: "1rem" }}
                 shadow="2"
                 hoverShadow="4"
+                onClick={()=> setCurrentProgramme(active+1)}
               >
                 <Icon name="RightArrow" size="20px" color="white"/>
               </Button>
@@ -158,9 +165,9 @@ const ProgrammesPage = props => {
           </Row>
           <Row>
             <motion.div onClick={() => setCurrentProgramme(0)}
-                        style={{ backgroundColor: "rgb(225, 228, 232)", padding: "5vh", width: "60vw" }}
+                        style={{ backgroundColor: "rgb(225, 228, 232)", padding: "50px", margin: { xs: "-10vw", lg: "0vw" }, width: {xs: "100vw", lg: "60vw" } }}
                         animate={pastProgrammesControls}>
-              {active != 0 &&
+              {active != 0 && smallScreen &&
               <Div align="center" flexDir="column" d="flex">
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
@@ -227,7 +234,11 @@ const ProgrammesPage = props => {
                 {active != 1 &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  General Broadcasting
+                  {smallScreen &&
+                  <>
+                    General Broadcasting
+                  </>
+                  }
                 </Text>
                 }
                 {active == 1 &&
@@ -288,10 +299,14 @@ const ProgrammesPage = props => {
             }} animate={nshControls}>
               <Div cursor="pointer" onClick={() => setCurrentProgramme(2)} h="100%" align="center"
                    flexDir="column" d="flex">
-                {active != 2 &&
+                {active != 2 && !smallScreen &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  New Star Hit
+                  {smallScreen &&
+                  <>
+                    New Star Hit
+                  </>
+                  }
                 </Text>
                 }
                 {active == 2 &&
@@ -352,10 +367,14 @@ const ProgrammesPage = props => {
             }} animate={interviewControls}>
               <Div cursor="pointer" onClick={() => setCurrentProgramme(3)} h="100%" align="center"
                    flexDir="column" d="flex">
-                {active != 3 &&
+                {active != 3 && !smallScreen &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  Interviews / Special
+                  {smallScreen &&
+                  <>
+                    Interviews / Special
+                  </>
+                  }
                 </Text>
                 }
                 {active == 3 &&
@@ -416,10 +435,14 @@ const ProgrammesPage = props => {
             }} animate={dramaControls}>
               <Div cursor="pointer" onClick={() => setCurrentProgramme(4)} h="100%" align="center"
                    flexDir="column" d="flex">
-                {active != 4 &&
+                {active != 4 && !smallScreen &&
                 <Text p={{ t: "40px" }} textSize="display1" textWeight="300"
                       style={{ writingMode: "vertical-rl", textOrientation: "sideways" }}>
-                  Radio Drama
+                  {smallScreen &&
+                  <>
+                    Radio Drama
+                  </>
+                  }
                 </Text>
                 }
                 {active == 4 &&

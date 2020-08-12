@@ -192,7 +192,6 @@ class IndexPage extends React.Component {
                   textWeight="400"
                 >
                   科大校園人民廣播電台致力為各位會員提供高質素與具意義的活動。通過各種迎新活動幫助新入學的新生熟悉科大環境，融入科大生活，同時藉著各種電台活動如參觀香港電台、使用電台房的錄音設備經營電台節目，令鮮少有機會接觸傳媒行業的科大學生更了解香港傳媒業的現況。欲知更多活動詳情，歡迎按下方按鈕瞭解更多。科大電台歡迎你！
-                  各種迎新活動幫助新入學的新生熟悉科大環境，融入科大生活。
                   <br/>
                   <br/>
                   We are dedicated to providing meaningful and high-quality activities to our members and students of

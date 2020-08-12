@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import { graphql } from "gatsby";
 import ReactDOM from "react-dom";
-import window from 'global'
+import window from "global";
 
 import AlgoliaIcon from "!svg-react-loader!../images/svg-icons/search-by-algolia.svg?name=AlgoliaLogo";
 import { Col, Image, Row, Text, Div } from "atomize";
@@ -26,7 +26,7 @@ const ActivitiesPage = props => {
   const [filter, setFilter] = useState("");
   const [activityFilter, setActivityFilter] = useState("");
   const reverse = () => {
-    console.log("reversing")
+    console.log("reversing");
     opacityControls.start({
       opacity: 1
     });
@@ -36,7 +36,7 @@ const ActivitiesPage = props => {
       display: "none"
     });
     backgroundControls.start({
-      height: [ "100vh", "40vh"],
+      height: ["100vh", "40vh"],
       position: "fixed",
       display: "none",
       top: -1,
@@ -53,16 +53,18 @@ const ActivitiesPage = props => {
   return (
     <React.Fragment>
       <motion.div style={{ display: "none" }} animate={animationControls}>
-        <Div
-          bg="white"
-          h="20vh"
-          w="20vw"
-          shadow="3"
-          bottom="5vh"
-        />
+        <Div bg="white" h="20vh" w="20vw" shadow="3" bottom="5vh" />
       </motion.div>
-      <Row h={{xs:"60vh", lg: "40vh" }} bg="warning500"
-           p={{ t: "5%", b: "5%", l: {xs: "7.5vw", xl: "7.5vw", lg: "5vw" }, r: { xs: "7.5vw", xl: "7.5vw", lg: "5vw" } }}>
+      <Row
+        h={{ xs: "60vh", lg: "40vh" }}
+        bg="warning500"
+        p={{
+          t: "5%",
+          b: "5%",
+          l: { xs: "7.5vw", xl: "7.5vw", lg: "5vw" },
+          r: { xs: "7.5vw", xl: "7.5vw", lg: "5vw" }
+        }}
+      >
         {/*  <Col size="4">*/}
         {/*    <Article theme={theme}>*/}
         {/*  <header>*/}
@@ -88,14 +90,14 @@ const ActivitiesPage = props => {
         {/*  `}</style>*/}
         {/*</Article>*/}
         {/*  </Col>*/}
-        <Col size={{xs:"12", lg:"7"}} d="flex" >
-          <motion.div animate={opacityControls}>
+        <Col size={{ xs: "12", lg: "7" }} d="flex" p={{l: "0"}}>
+          <motion.div style={{ marginBottom: "-25vh" }} animate={opacityControls}>
             <Text tag="h1" textSize="6vw" p={{ t: "10px" }}>
               Interested in our Events & Activities?
             </Text>
           </motion.div>
         </Col>
-        <Col p={{ t: { xs:"0vh", lg:"5vh" } }} size={{xs:"12", lg:"5"}}>
+        <Col p={{ t: { xs: "0vh", lg: "5vh" } }} size={{ xs: "12", lg: "5" }}>
           <motion.div animate={opacityControls}>
             <Text tag="h1" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
               This year's events & activities →
@@ -112,18 +114,32 @@ const ActivitiesPage = props => {
             />
           </motion.div>
         </Col>
-
       </Row>
       <motion.div animate={backgroundControls}>
-        <Div h="100%" bg="warning500">
-        </Div>
+        <Div h="100%" bg="warning500"></Div>
       </motion.div>
-      <Div h="45vh" m={{ t: "-20px", b: "10%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}>
+      <Div
+        h="45vh"
+        m={{ t: "-20px", b: "10%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }}
+      >
         <motion.div style={{ height: "100%" }} animate={opacityControls}>
-          <Text tag="h4" textWeight="400" textSize="subheader" p={{ t: "10vh", y: "2.5vh" }}>
+          <Text
+            tag="h4"
+            textWeight="400"
+            textSize="subheader"
+            p={{ l: { xs: "5vw", lg: "0" }, t: "5vh", b: "2.5vh" }}
+          >
             Past year events
           </Text>
-          <Div d="flex" minW="100%" h="100%" overflow="visible scroll" style={{ overflowY: "hidden" }}>
+          <Div
+            d="flex"
+            minW="100%"
+            h="100%"
+            flexDir={{ xs: "column", lg: "row" }}
+            m={{l:{xs:"5vw", lg: "0vw"}}}
+            overflow="hidden scroll"
+            style={{overflowX:"visible"}}
+          >
             {jongs.map((jong, i) => {
               // tests.map(test => {});
               const {
@@ -133,14 +149,14 @@ const ActivitiesPage = props => {
               const posRef = useRef();
               const actions = () => {
                 const { offsetTop, offsetLeft } = posRef.current;
-                const left = offsetLeft / window.innerWidth * 100;
+                const left = (offsetLeft / window.innerWidth) * 100;
                 let margin = 0;
                 margin = (left - 45) / 3;
-                console.log(offsetLeft / window.innerWidth * 100);
+                console.log((offsetLeft / window.innerWidth) * 100);
                 animationControls.start({
                   position: "fixed",
                   opacity: 1,
-                  x: [left + "vw", (45 + 2 * margin) + "vw", (45 + 1 * margin) + "vw", "45vw"],
+                  x: [left + "vw", 45 + 2 * margin + "vw", 45 + 1 * margin + "vw", "45vw"],
                   y: ["80vh", "50vh", "40vh", "40vh"],
                   scale: [1, 1.5, 2, 3.5],
                   transition: { duration: 0.75, times: [0, 0.5, 0.8, 1] },
@@ -164,26 +180,31 @@ const ActivitiesPage = props => {
                   transition: { duration: 0.5, delay: 0.5, times: [0, 1] }
                 });
               };
-              if(i !== jongs.length-1) {
+              if (i !== jongs.length - 1) {
                 return (
-                  <Div ref={posRef} w="25%" p={{ y: "20px", r: "20px" }} d="inline-block" h="100%"
-                       style={{ cursor: "pointer" }} onClick={(e) => actions(e)}>
-                    <Text tag="h4" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
+                  <Div
+                    size={{ xs: "12", lg: "3" }}
+                    ref={posRef}
+                    p={{ b: { xs:"1rem", lg:"2rem" }, t:{lg: "3rem"}, r: "20px" }}
+                    d="inline-block"
+                    h="100%"
+                    style={{ cursor: "pointer" }}
+                    onClick={e => actions(e)}
+                  >
+                    <Text tag="h4" textWeight="400" textSize="subheader" p={{ y: { xs: "1.5vh", lg: "2.5vh" } }}>
                       {name}
                     </Text>
-                    {
-                      files[i] && files[i].node.base.startsWith("ex-") &&
+                    {files[i] && files[i].node.base.startsWith("ex-") && (
                       <Div
                         bgImg={files[i].node.childImageSharp.fluid.src}
                         bgSize="cover"
                         bgPos="center"
-                        w="20vw"
-                        h="80%"
+                        w={{ xs: "90vw", lg: "30vw" }}
+                        h={{ xs: "25vh", lg: "80%" }}
                         shadow="4"
-                        onClick={() =>
-                          setFilter(year)}
+                        onClick={() => setFilter(year)}
                       />
-                    }
+                    )}
                     {/*<Div*/}
                     {/*  shadow="3"*/}
                     {/*  bgImg={placeholder}*/}
@@ -204,24 +225,60 @@ const ActivitiesPage = props => {
         <Div pos="absolute" left="0" top="0" bg="warning500">
           <Row h="100vh" p={{ b: "10vh", t: "10vh", x: { xl: "4vw", lg: "2vw" } }}>
             <Div>
-              <Text onClick={() => reverse()} pos="absolute" tag="p" textWeight="300" textSize="title" p={{ l: "2.5%" }}>
+              <Text
+                onClick={() => reverse()}
+                pos="absolute"
+                m={{t: { xs: "-5vh", lg: "0vh" }}}
+                tag="p"
+                textWeight="300"
+                textSize="title"
+                p={{ l: "2.5%" }}
+              >
                 ←Back
               </Text>
             </Div>
-            <Col size="4" p="2.5%" d="flex" align="center">
-              <Image shadow="4" src={files.filter(function(img) {
-                console.log(activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title)
-                return img.node.base.startsWith(filter) && img.node.base.endsWith(
-                    (activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title)
-                + ".jpg")
-              })[0].node.childImageSharp.fluid.src} style={{ zIndex: 2 }}/>
+            <Col size={{ xs: "12", lg: "4" }} p="2.5%" d="flex" align="center">
+              <Image
+                shadow="4"
+                src={
+                  files.filter(function(img) {
+                    console.log(
+                      activities.find(
+                        element =>
+                          filter == element.node.year ||
+                          (filter == "" && element.node.year == "2019")
+                      ).node.title
+                    );
+                    return (
+                      img.node.base.startsWith(filter) &&
+                      img.node.base.endsWith(
+                        activities.find(
+                          element =>
+                            filter == element.node.year ||
+                            (filter == "" && element.node.year == "2019")
+                        ).node.title + ".jpg"
+                      )
+                    );
+                  })[0].node.childImageSharp.fluid.src
+                }
+                style={{ zIndex: 2 }}
+              />
             </Col>
-            <Col shadow="5" style={{
-              marginLeft: "-15vw",
-              paddingLeft: "15vw",
-              maxWidth: "80%",
-              flex: "0 1 80%"
-            }} d="flex" align="center" flexDir="row" size="8" bg="white">
+            <Col
+              shadow="5"
+              // style={{
+              //   marginLeft: "-15vw",
+              //   paddingLeft: "15vw",
+              //   maxWidth: "80%",
+              //   flex: "0 1 80%"
+              // }}
+              d="flex"
+              m={{l: { lg: "-15vw" }}}
+              align="center"
+              flexDir={{ xs: "column", lg: "row" }}
+              size={{ xs: "12", lg: "8" }}
+              bg="white"
+            >
               {/*{activities.find(element => filter == element.node.year && activityFilter == element.node.title )}*/}
               {activities.map((activity, i) => {
                 const {
@@ -238,9 +295,22 @@ const ActivitiesPage = props => {
                   }
                 } = activity;
 
-                if (year == filter && title == activities.find(element => filter == element.node.year || (filter == "" && element.node.year == "2019")).node.title) {
+                if (
+                  year == filter &&
+                  title ==
+                    activities.find(
+                      element =>
+                        filter == element.node.year || (filter == "" && element.node.year == "2019")
+                    ).node.title
+                ) {
                   return (
-                    <Col h="100%" size="7" d="flex" align="center" p={{ y: "3%", l: { xl: "3vw", lg: "2vw" } }}>
+                    <Col
+                      h={{ xs: "auto", lg:"100%" }}
+                      size={{ xs: "12", lg: "7" }}
+                      d="flex"
+                      align="center"
+                      p={{ y: { xs: "7.5%", lg: "3%" }, l: { xs: "5vw", xl: "3vw", lg: "2vw" }, r: {xs: "5vw", lg: "0vw"} }}
+                    >
                       <div>
                         <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
                           {title}
@@ -248,60 +318,90 @@ const ActivitiesPage = props => {
                         <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
                           {subtitle1}
                         </Text>
-                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
+                        <Text
+                          tag="p"
+                          textWeight="200"
+                          textSize="title"
+                          p={{ t: "20px" }}
+                          style={{ whiteSpace: "pre-line" }}
+                        >
                           {content1}
                         </Text>
                         <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
                           {subtitle2}
                         </Text>
-                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
+                        <Text
+                          tag="p"
+                          textWeight="200"
+                          textSize="title"
+                          p={{ t: "20px" }}
+                          style={{ whiteSpace: "pre-line" }}
+                        >
                           {content2}
                         </Text>
                         <Text tag="h6" textSize="display1" p={{ t: "30px" }}>
                           {subtitle3}
                         </Text>
-                        <Text tag="p" textWeight="200" textSize="title" p={{ t: "20px" }} style={{whiteSpace: "pre-line"}}>
+                        <Text
+                          tag="p"
+                          textWeight="200"
+                          textSize="title"
+                          p={{ t: "20px" }}
+                          style={{ whiteSpace: "pre-line" }}
+                        >
                           {content3}
                         </Text>
                       </div>
                     </Col>
                   );
                 }
-              })
-              }
-              <Col shadow="5" h="80vh" size="5" overflow="scroll" style={{ overflowX: "hidden" }}>
+              })}
+              <Col shadow="5" h="80vh" size={{ xs: "12", lg: "5" }} overflow="scroll" style={{ overflowX: "hidden" }}>
                 {activities.map((activity, i) => {
                   const {
                     node,
-                    node: {
-                      title,
-                      year,
-                      jong
-                    }
+                    node: { title, year, jong }
                   } = activity;
 
                   let filteredImg = files.filter(function(img) {
                     // console.log(img.node.base);
-                    return img.node.base.startsWith(filter)
-                      && img.node.base.endsWith(title + ".jpg");
+                    return (
+                      img.node.base.startsWith(filter) && img.node.base.endsWith(title + ".jpg")
+                    );
                   })[0];
                   // console.log(filteredImg);
                   // console.log(filter, activityFilter);
                   if (year == filter) {
                     return (
-                      <Div shadow="3" m="5px" d="flex" flexDir="row" p={{ y: "10px" }} cursor="pointer" onClick={() =>
-                        setActivityFilter(title)}>
-                        <Col size="3" align="center" d="flex" flexDir="row">
-                          <Image h="5" shadow="5" style={{ objectFit: "cover", zIndex: 2 }}
-                                 src={filteredImg && filteredImg.node.childImageSharp.fluid.src}/>
+                      <Div
+                        shadow="3"
+                        m="5px"
+                        d="flex"
+                        flexDir="row"
+                        p={{ y: "10px" }}
+                        cursor="pointer"
+                        onClick={() => setActivityFilter(title)}
+                      >
+                        <Col size={{ xs: "12", lg: "3" }} align="center" d="flex" flexDir="row">
+                          <Image
+                            h="5"
+                            shadow="5"
+                            style={{ objectFit: "cover", zIndex: 2 }}
+                            src={filteredImg && filteredImg.node.childImageSharp.fluid.src}
+                          />
                         </Col>
-                        <Col size="8" align="center" d="flex" flexDir="row">
+                        <Col size={{ xs: "12", lg: "8" }} align="center" d="flex" flexDir="row">
                           <Div>
                             <Text textWeight="200" tag="h6" textSize="subheader" p={{ l: "20px" }}>
                               {title}
                             </Text>
-                            <Text textColor="info600" textWeight="300" tag="h6" textSize="subheader"
-                                  p={{ l: "20px", t: "5px" }}>
+                            <Text
+                              textColor="info600"
+                              textWeight="300"
+                              tag="h6"
+                              textSize="subheader"
+                              p={{ l: "20px", t: "5px" }}
+                            >
                               {jong}
                             </Text>
                           </Div>
@@ -309,8 +409,7 @@ const ActivitiesPage = props => {
                       </Div>
                     );
                   }
-                })
-                }
+                })}
               </Col>
             </Col>
           </Row>
@@ -329,8 +428,7 @@ const ActivitiesPage = props => {
       `}</style>
       ;
     </React.Fragment>
-  )
-    ;
+  );
 };
 
 ActivitiesPage.propTypes = {
@@ -364,10 +462,10 @@ export const query = graphql`
       }
     }
     allFile(
-      sort: {fields: base, order: DESC},
+      sort: { fields: base, order: DESC }
       filter: {
         extension: { regex: "/(jpg)|(png)|(jpeg)/" }
-        relativeDirectory: { regex: "/activities/jong/[0-9]+/"}
+        relativeDirectory: { regex: "/activities/jong/[0-9]+/" }
       }
     ) {
       edges {
