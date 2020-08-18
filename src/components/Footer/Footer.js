@@ -1,13 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import window from "global"
 const Footer = props => {
   const { html, theme } = props;
 
   return (
     <React.Fragment>
-      <footer className="footer" dangerouslySetInnerHTML={{ __html: html }} />
-
+      {window.innerWidth > 800 &&
+        <footer className="footer" dangerouslySetInnerHTML={{ __html: html }} />
+      }
       {/* --- STYLES --- */}
       <style jsx>{`
         .footer {

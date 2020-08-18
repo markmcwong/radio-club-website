@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Div, ThemeProvider, Text, Button, Icon } from "atomize";
+import { Div, ThemeProvider, Text, Button, Icon, Image } from "atomize";
 import { useStyletron } from "styletron-react";
 import { Line, Circle } from "rc-progress";
 import { graphql } from "gatsby";
@@ -25,27 +25,6 @@ const theme = {
 
 const CarouselNews = props => {
   const { sites } = props;
-  const variants = {
-    enter: (direction) => {
-      return {
-        x: direction > 0 ? 1000 : -1000,
-        opacity: 0
-      };
-    },
-    center: {
-      zIndex: 0,
-      x: 0,
-      opacity: 1,
-      width: "100vw"
-    },
-    exit: (direction) => {
-      return {
-        zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
-        opacity: 0
-      };
-    }
-  };
   const images = [
     one,
     two,
@@ -53,8 +32,8 @@ const CarouselNews = props => {
   ];
   const text = [
     <>Welcome <br/> to Radio <br/></>,
-    <>General Broadcast <br/> Caption <br/></>,
-    <>Some Suitable <br/> Caption <br/></>,
+    <>Orientation Day<br/></>,
+    <>Radio <br/> News Team <br/></>,
   ];
   const sequence = async () => {
     await controls.start({
@@ -90,27 +69,19 @@ const CarouselNews = props => {
         clearTimeout(timer1)
       }
     }
-    setPercent(percent + 0.05)
+    setPercent(percent + 0.0125)
   },[percent])
   const controls = useAnimation();
   const lineControls = useAnimation();
   const textControls = useAnimation();
   return (
     <React.Fragment>
-      <Div h={{xs:"85vh", md:"60vh", lg:"100vh", xl:"100vh"}}>
-        <motion.img
-          src={images[imageIndex]}
-          variants={variants}
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 200 },
-            opacity: { duration: 0.2 }
-          }}
-          style={{height: "100%",
-            width: "100vw", backgroundSize: "cover", objectFit: "cover"}}
-        />
-      </Div>
+      <Image
+        src={images[imageIndex]}
+        h={{xs:"90vh", md:"60vh", lg:"100vh", xl:"100vh"}}
+        w="100vw"
+        style={{objectFit: "cover"}}
+      />
 
       <Div pos="absolute" left="10vw" top={{ xs:"8vh", lg: "15vh" }}>
         <motion.div animate={controls}>
@@ -119,7 +90,7 @@ const CarouselNews = props => {
           </Text>
         </motion.div>
       </Div>
-      <Div w={{ xs:"70vw", lg:"55vw" }} pos="absolute" bottom={{xs:"15vh", md:"40vh", lg:"0"}} right="0">
+      <Div w={{ xs:"70vw", lg:"55vw" }} pos="absolute" bottom={{xs:"0vh", md:"40vh", lg:"0"}} right="0">
         <motion.div animate={lineControls}>
           <Line
             strokeLinecap="square"
@@ -153,7 +124,7 @@ const CarouselNews = props => {
                 {description}
               </Text>
               <Div p={{ t: { lg: "1rem", xl: "1rem" }, b: { lg: "2em", xl: "2rem" } }}>
-                <Text tag="p" textSize={{ xs:"subheader", lg:"title" }} onClick={() => location.href = "#"}>
+                <Text tag="p" textSize={{ xs:"subheader", lg:"title" }} onClick={() => location.href = "https://www.instagram.com/pcr_hkustsu/"}>
                   {action}
                 </Text>
               </Div>

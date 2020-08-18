@@ -12,6 +12,7 @@ import AnimatedText from "../components/Page/animatedText";
 import placeholder from "../images/png/placeholder.png";
 import newsTeamImage from "../images/jpg/news_reporting_team.jpeg";
 import aboutUsImage from "../images/jpg/aboutUs.jpg";
+import coopImage from "../images/jpg/coop.jpg";
 
 import AnimatedImage from "../components/Page/animatedImage";
 import { motion, useAnimation } from "framer-motion";
@@ -119,7 +120,7 @@ const CategoryPage = props => {
                   香港科技大學學生會科大校園人民廣播電台
                 </Text>
                 <Text tag="h1" textSize={{xs:"12vw", lg:"7vw"}} p={{ t: "10px" }}>
-                  People's Campus Radio HKUSTSU
+                  People's Campus Radio, HKUSTSU
                 </Text>
                 <Text tag="p" textSize={{xs:"caption", sm:"body", md:"paragraph", lg:"subheader"}} p={{
                   t: { xs: '1rem', md: '1rem' },
@@ -152,7 +153,7 @@ const CategoryPage = props => {
             </Row>
             <Row h="auto" p={{ b: "5%", t: "5%", l: { xl: "7.5vw", lg: "5vw" }, r: { xl: "7.5vw", lg: "5vw" } }} bg="warning700">
               <Col size={{xs:"12", lg:"5"}}  d="flex" align="center">
-                <Image height="auto%" p={{xs:"5%"}} width="auto" src={placeholder}/>
+                <Image height="auto%" p={{xs:"5%"}} width="auto" src={coopImage}/>
               </Col>
               <Col d="flex" align="center" size={{xs:"12", lg:"7"}}  p={{l: { xs:"7.5vw", xl: "7.5vw", lg: "5vw" }}}>
                 <div>

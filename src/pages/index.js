@@ -88,7 +88,7 @@ class IndexPage extends React.Component {
               香港科技大學學生會科大校園人民廣播電台
             </Text>
             <Text tag="h1" textSize={{ xs: "12vw", lg: "7vw" }} p={{ t: "10px" }}>
-              People's Campus Radio HKUSTSU
+              People's Campus Radio, HKUSTSU
             </Text>
             <Text tag="p" textSize={{ xs: "caption", sm: "body", md: "paragraph", lg: "subheader" }} p={{
               t: { xs: "1rem", md: "1rem" }
@@ -214,6 +214,7 @@ class IndexPage extends React.Component {
                   data-sal="slide-right"
                   data-sal-delay="300"
                   data-sal-easing="ease"
+                  onClick={() => location.href = "/aboutus/"}
                 >
                   View more →
                 </Text>

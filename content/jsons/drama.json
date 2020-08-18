@@ -1,0 +1,108 @@
+[
+  {
+    "name": "科大電台新星試打2018 - 最後的七天",
+    "subtitle1": "Hosts",
+    "content1": "Sunny , Sam , Isabella, Alex, viann, Coco",
+    "subtitle2": "Script Writer",
+    "content2": "Mikado ,Anson",
+    "subtitle3": "Director",
+    "content3": "Sally ,Xanthy ,小明 ,Maisy , Echo , Stella",
+    "link": [
+      "https://drive.google.com/open?id=14uxqmxRQISdqonmmb3B2guQQAOK13gkU"
+    ],
+    "year": 2018
+  },
+  {
+    "name": "科大電台常規廣播2018 - 誰偷走我的夢",
+    "subtitle1": "Hosts",
+    "content1": "Alan, betty, Lin, 菜子, 青蛙, Anson, eva",
+    "subtitle2": "Script Writer",
+    "content2": "Jim ,Lin",
+    "subtitle3": "Director",
+    "content3": "Jim ,Lin",
+    "link": [
+      "https://drive.google.com/open?id=189XywZ0cZ7n6gEw1U5truB4CsZowMb0T",
+      "https://drive.google.com/open?id=1zJXPLvlK54Opdjpn-t-XAP660o2Kks5C",
+      "https://drive.google.com/open?id=1Y44hYL1YkMQIcTY7HKjYLvJtJA0x53bB"
+    ],
+    "year": 2018
+  },
+  {
+    "name": "科大電台常規廣播2017廣播劇 - 我有個唔食快餐嘅friend",
+    "subtitle1": "Hosts",
+    "content1": "科大趙穎,Betty,Eva,Alan,Perna,Melody,屈先生",
+    "subtitle2": "Script Writer",
+    "content2": "趙穎",
+    "subtitle3": "Director",
+    "content3": "Betty,趙穎",
+    "link": [
+      "https://drive.google.com/open?id=0B02QTurkSPkEc3FmSms1UGNzRTQ",
+      "https://drive.google.com/open?id=0B02QTurkSPkEUHNtTHVlb3lweWM",
+      "https://drive.google.com/open?id=0B02QTurkSPkEWld6NDlNVWhLZGM"
+    ],
+    "year": 2017
+  },
+  {
+    "name": "科大電台新星試打2015廣播劇 - 一直都在",
+    "description": "回憶的事是甜還是苦? 音樂劇 x 談情? 本劇帶你跨學生時代細味一對情侶故事",
+    "subtitle1": "Hosts",
+    "content1": "肥羊, Melody, Kami, Mandy, Karen, Bethany,Cecilia,Heidi, Marco",
+    "subtitle2": "Script Writer",
+    "content2": "Kelly, Charles",
+    "subtitle3": "Director",
+    "content3": "Anson",
+    "link": [
+      "https://drive.google.com/open?id=0B0oP4g-1k3PMZ01yYll2UmNpelU",
+      "https://drive.google.com/open?id=0B0oP4g-1k3PMYVozQ19WMTg5U2c"
+    ],
+    "year": 2015
+  },
+  {
+    "name": "科大電台新星試打2014廣播劇 - 失憶罪",
+    "description": "兇手？ 受害者？ 謀殺？ 誤殺？ 失憶 ? 計謀？ 一切疑團由你破解！",
+    "subtitle1": "Hosts",
+    "content1": "Anson, Shelia, Karen, Elaine, Malca, Simon,星星,嘉豪, Pinky",
+    "link": [],
+    "year": 2014
+  },
+  {
+    "name": "科大電台常規廣播2014廣播劇 - 主宰時光之腦",
+    "description": "一個與往日無異的下午 偶爾打開塵封的電腦 發現大量詭祕的檔案 一下無心之失 世界驀地轉個天翻地覆 按着錯綜複雜的脈落推展 街市仔又是如何拯救世界呢？",
+    "subtitle1": "Hosts",
+    "content1": "五月, Kitty, Marco, Sam",
+    "link": [],
+    "year": 2014
+  },
+  {
+    "name": "科大電台新星試打2013廣播劇 - 你在穿越中找我",
+    "description": "一個機械人和一個人類的穿越時空故事",
+    "subtitle1": "Author",
+    "content1": "Radio Drama Team",
+    "link": [],
+    "year": 2013
+  },
+  {
+    "name": "[2013]科大電台年度校園廣播劇 - 如有雷同",
+    "description": "五個在科大浮沉的人,五個不同風格的故事, 如有雷同 , 實屬巧合",
+    "subtitle1": "Author",
+    "content1": "Matthew Tang",
+    "link": [],
+    "year": 2013
+  },
+  {
+    "name": "[2013]科大電台年度愛情廣播劇 - 會回來的天使",
+    "description": "你..係啲咩都唔怕嘅人，但你最怕嘅係..當佢再次出現係你面前嘅時候，一切關於你同佢嘅回億，無論係快樂定係痛苦，都再次佔據你嘅思緒....",
+    "subtitle1": "Author",
+    "content1": "烽",
+    "link": [],
+    "year": 2013
+  },
+  {
+    "name": "[Joint-U] 鄭梓靈 《心碎的聲音》廣播劇",
+    "description": "五個在科大浮沉的人,五個不同風格的故事, 如有雷同 , 實屬巧合",
+    "subtitle1": "Author",
+    "content1": "Matthew Tang",
+    "link": ["http://youtu.be/gIEYhZ_eBiM", "http://youtu.be/hv3zbNM0xAE", "http://www.youtube.com/watch?v=O1y9e9vY6iQ", "http://www.youtube.com/watch?v=RsaEllGdPuw"],
+    "year": 2013
+  }
+]

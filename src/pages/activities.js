@@ -53,9 +53,10 @@ const ActivitiesPage = props => {
   return (
     <React.Fragment>
       <motion.div style={{ display: "none" }} animate={animationControls}>
-        <Div bg="white" h="20vh" w="20vw" shadow="3" bottom="5vh" />
+        <Div bg="white" h="20vh" w="20vw" shadow="3" bottom="5vh"/>
       </motion.div>
       <Row
+        m={{ t: { xs: "-10vh", lg: "0vh" } }}
         h={{ xs: "60vh", lg: "40vh" }}
         bg="warning500"
         p={{
@@ -90,14 +91,14 @@ const ActivitiesPage = props => {
         {/*  `}</style>*/}
         {/*</Article>*/}
         {/*  </Col>*/}
-        <Col size={{ xs: "12", lg: "7" }} d="flex" p={{l: "0"}}>
+        <Col size={{ xs: "12", lg: "7" }} d="flex" p={{ l: "0" }}>
           <motion.div style={{ marginBottom: "-25vh" }} animate={opacityControls}>
             <Text tag="h1" textSize="6vw" p={{ t: "10px" }}>
               Interested in our Events & Activities?
             </Text>
           </motion.div>
         </Col>
-        <Col p={{ t: { xs: "0vh", lg: "5vh" } }} size={{ xs: "12", lg: "5" }}>
+        <Col p={{ t: { xs: "0vh", lg: "5vh" } }} size={{ xs: "12", lg: "5" }} onClick={() => location.href = "/test/"}>
           <motion.div animate={opacityControls}>
             <Text tag="h1" textWeight="400" textSize="subheader" p={{ y: "2.5vh" }}>
               This year's events & activities →
@@ -134,11 +135,11 @@ const ActivitiesPage = props => {
           <Div
             d="flex"
             minW="100%"
-            h="100%"
+            h={{ xs: "auto", lg: "100%" }}
             flexDir={{ xs: "column", lg: "row" }}
-            m={{l:{xs:"5vw", lg: "0vw"}}}
+            m={{ l: { xs: "5vw", lg: "0vw" } }}
             overflow="hidden scroll"
-            style={{overflowX:"visible"}}
+            style={{ overflowX: "visible" }}
           >
             {jongs.map((jong, i) => {
               // tests.map(test => {});
@@ -185,7 +186,7 @@ const ActivitiesPage = props => {
                   <Div
                     size={{ xs: "12", lg: "3" }}
                     ref={posRef}
-                    p={{ b: { xs:"1rem", lg:"2rem" }, t:{lg: "3rem"}, r: "20px" }}
+                    p={{ b: { xs: "1rem", lg: "2rem" }, t: { lg: "3rem" }, r: "20px" }}
                     d="inline-block"
                     h="100%"
                     style={{ cursor: "pointer" }}
@@ -223,21 +224,22 @@ const ActivitiesPage = props => {
       </Div>
       <motion.div style={{ display: "none" }} animate={overlayControls}>
         <Div pos="absolute" left="0" top="0" bg="warning500">
-          <Row h="100vh" p={{ b: "10vh", t: "10vh", x: { xl: "4vw", lg: "2vw" } }}>
+          <Row h={{ xs: "auto", lg: "100vh" }} p={{ b: "10vh", t: "10vh", x: { xl: "4vw", lg: "2vw" } }}>
             <Div>
               <Text
                 onClick={() => reverse()}
-                pos="absolute"
-                m={{t: { xs: "-5vh", lg: "0vh" }}}
+                pos="fixed"
+                m={{ l: {xs: "2vh", lg: "0"},t: { xs: "-8vh", lg: "0vh" } }}
                 tag="p"
                 textWeight="300"
-                textSize="title"
+                textSize={{xs:"display2", lg:"title"}}
                 p={{ l: "2.5%" }}
               >
-                ←Back
+                ←{window.innerWidth > 800 ? "Back" : ""}
               </Text>
             </Div>
             <Col size={{ xs: "12", lg: "4" }} p="2.5%" d="flex" align="center">
+              {/*bg="linear-gradient(90deg, transparent 50%, #FFFFFF 50%)"*/}
               <Image
                 shadow="4"
                 src={
@@ -245,17 +247,17 @@ const ActivitiesPage = props => {
                     console.log(
                       activities.find(
                         element =>
-                          filter == element.node.year ||
-                          (filter == "" && element.node.year == "2019")
-                      ).node.title
+                          activityFilter == element.node.title || (activityFilter == "" && element.node.year == filter)
+                        // (filter == "" && element.node.year == "2019")
+                      )
+                      //node.title
                     );
                     return (
                       img.node.base.startsWith(filter) &&
                       img.node.base.endsWith(
                         activities.find(
                           element =>
-                            filter == element.node.year ||
-                            (filter == "" && element.node.year == "2019")
+                            activityFilter == element.node.title || (activityFilter == "" && element.node.year == filter) || (filter == "" && element.node.year == "2019")
                         ).node.title + ".jpg"
                       )
                     );
@@ -273,7 +275,7 @@ const ActivitiesPage = props => {
               //   flex: "0 1 80%"
               // }}
               d="flex"
-              m={{l: { lg: "-15vw" }}}
+              m={{ l: { lg: "-15vw" } }}
               align="center"
               flexDir={{ xs: "column", lg: "row" }}
               size={{ xs: "12", lg: "8" }}
@@ -298,18 +300,22 @@ const ActivitiesPage = props => {
                 if (
                   year == filter &&
                   title ==
-                    activities.find(
-                      element =>
-                        filter == element.node.year || (filter == "" && element.node.year == "2019")
-                    ).node.title
+                  activities.find(
+                    element =>
+                      activityFilter == element.node.title || (activityFilter == "" && element.node.year == filter) || (filter == "" && element.node.year == "2019")
+                  ).node.title
                 ) {
                   return (
                     <Col
-                      h={{ xs: "auto", lg:"100%" }}
+                      h={{ xs: "auto", lg: "100%" }}
                       size={{ xs: "12", lg: "7" }}
                       d="flex"
                       align="center"
-                      p={{ y: { xs: "7.5%", lg: "3%" }, l: { xs: "5vw", xl: "3vw", lg: "2vw" }, r: {xs: "5vw", lg: "0vw"} }}
+                      p={{
+                        y: { xs: "7.5%", lg: "3%" },
+                        l: { xs: "5vw", xl: "3vw", lg: "2vw" },
+                        r: { xs: "5vw", lg: "0vw" }
+                      }}
                     >
                       <div>
                         <Text tag="h1" textSize="display3" p={{ t: "10px" }}>
