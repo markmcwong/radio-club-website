@@ -43,7 +43,7 @@
     "gatsby-transformer-sharp": "^2.1.1",
     "global": "^4.4.0",
     "js-yaml": "^3.12.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "normalize.css": "^8.0.0",
     "prismjs": "^1.15.0",
     "prop-types": "^15.7.2",
